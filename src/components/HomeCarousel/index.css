@@ -1,0 +1,20 @@
+
+.custom-dots {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .custom-dots li button:before {
+    content: '';
+    width: 8px;
+    height: 5px;
+    display: inline-block;
+    background-color: #868686; 
+    border-radius: 2px; 
+  }
+  
+  .custom-dots li.slick-active button:before {
+    background-color: #22A45D; 
+  }
+  
