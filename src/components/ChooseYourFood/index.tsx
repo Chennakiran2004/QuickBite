@@ -1,9 +1,18 @@
+import { useNavigate } from "react-router-dom"
 import { GlobalButton, AllYourFavoritesContainerDescription, AllYourFavoritesContainerHeading, AllYourFavoritesDescriptionContainer } from "../AllYourFavorites/styledComponents"
 import HeadingComponent from "../HeadingComponent"
 import { ChooseYourFoodImage, ChooseYourFoodMainContainer } from "./styledComponents"
 
 
 const ChooseYourFood = () => {
+
+    const navigate = useNavigate()
+
+    const handleGetStartedButton = () => {
+        navigate("/signIn")
+        console.log("button clicked")
+    }
+
     return(
         <ChooseYourFoodMainContainer>
             <HeadingComponent/>
@@ -11,7 +20,7 @@ const ChooseYourFood = () => {
             <AllYourFavoritesDescriptionContainer>
                 <AllYourFavoritesContainerHeading>Choose you food</AllYourFavoritesContainerHeading>
                 <AllYourFavoritesContainerDescription>Easily find your type of food craving and you’ll get delivery in wide range.</AllYourFavoritesContainerDescription>
-                <GlobalButton>GET STARTED</GlobalButton>
+                <GlobalButton onClick={handleGetStartedButton}>GET STARTED</GlobalButton>
             </AllYourFavoritesDescriptionContainer>
         </ChooseYourFoodMainContainer>
     )

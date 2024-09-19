@@ -153,3 +153,11 @@ outline: none;
 border: none;
 background: none;
 `
+
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+`;

@@ -32,6 +32,7 @@ font-weight: 600;
 line-height: 24px; /* 150% */
 letter-spacing: -0.28px;
 align-self: stretch;
+margin: 0px;
 `
 
 export const TodaysMenuItemPrice = styled.p`
@@ -43,6 +44,7 @@ font-weight: 700;
 line-height: 24px; /* 171.429% */
 letter-spacing: -0.28px;
 align-self: stretch;
+margin: 0px;
 `
 
 export const TodaysMenuItemDescription = styled.p`
@@ -53,20 +55,21 @@ font-style: normal;
 font-weight: 400;
 line-height: 24px; /* 171.429% */
 letter-spacing: -0.28px;
+margin: 0px;
 `
 
 export const TodaysMenuFoodImageContainer = styled.div`display: flex;
+display: flex;
 flex-direction: column;
 align-items: center;
 gap: -24px;
 align-self: stretch;
-width: 45%;
 `
 
 export const TodaysMenuFoodImage = styled.img`
-height: 200px;
+height: 160px;
 align-self: stretch;
-border-radius:8px;
+border-radius: 8px;
 `
 
 export const TodaysMenuFoodAddButton = styled.button`
@@ -78,6 +81,59 @@ gap: 8px;
 border-radius: 12px;
 border: 1px solid #EEA734;
 background: var(--Light-yellow-50, #FEFCE8);
-position: absolute;
-top: 39%;
+position: relative;
+top: -10%;
+color: var(--Light-yellow-600, #CA8A04);
+font-feature-settings: 'liga' off, 'clig' off;
+font-family: "Yu Gothic UI";
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; /* 120% */
+letter-spacing: -0.4px;
+`
+
+export const PlusIcon = styled.svg`
+width: 8px;
+height: 8px;
+color: #CA8A04;
+position: relative;
+top: -36%;
+right: -36%;
+`
+
+export const MinusIcon = styled.svg`
+width: 8px;
+height: 8px;
+color: #CA8A04;
+position: relative;
+top: -36%;
+right: -36%;
+`
+
+export const TodaysMenuFoodCountButton = styled.button`
+background: none;
+border: none;
+`
+
+export const CountContainer = styled.div`
+display: flex;
+flex-direction: row;
+padding: 8px 24px;
+justify-content: space-between;
+align-items: center;
+gap: 8px;
+border-radius: 12px;
+border: 1px solid #EEA734;
+background: var(--Light-yellow-50, #FEFCE8);
+position: relative;
+top: -10%;
+color: var(--Light-yellow-600, #CA8A04);
+font-feature-settings: 'liga' off, 'clig' off;
+font-family: "Yu Gothic UI";
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; /* 120% */
+letter-spacing: -0.4px;
 `

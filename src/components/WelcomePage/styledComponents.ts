@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const MainContainer = styled.div`
-  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +21,7 @@ flex-shrink: 0;
 `;
 
 
-export const CarouselFirstImage = styled.svg`
+export const CarouselFirstImage = styled.img`
 position: absolute;
 top: 24%;
 width: 66%;

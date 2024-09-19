@@ -18,6 +18,8 @@ function HomeCarousel() {
     slidesToScroll: 1,
     initialSlide: 0,
     arrows: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 480,

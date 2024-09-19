@@ -65,4 +65,5 @@ width: 100%;
 border-width: 0px;
 height: 48px;
 margin-top: 8%;
+z-index: 3;
 `
