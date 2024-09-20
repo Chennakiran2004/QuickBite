@@ -46,3 +46,8 @@ line-height: normal;
 letter-spacing: 0.1px;
 text-align: center;
 `
+
+export const TabBarContainer1 = styled.div`
+display: flex;
+flex-direction: column;
+`

@@ -29,11 +29,17 @@ export const TabBarContainer = styled.div`
   position: fixed;
   width: 100vw;
   bottom: 0;
-  z-index: 10;
 `;
 
 export const CategoryDropDownListContainer = styled.div`
 display: flex;
 flex-direction: column;
 gap: 16px;
+margin-bottom: 160px;
+`
+
+export const CheckOutPopupHomeContainer = styled.div`
+width: 96%;
+margin: auto;
+margin-bottom: 8px;
 `
