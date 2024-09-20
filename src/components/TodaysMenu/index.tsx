@@ -195,11 +195,11 @@ const TodaysMenu = () => {
   };
 
   const handleCheckoutClick = () => {
-    setShowModal(true); // Show modal when CheckoutPopup is clicked
+    setShowModal(true);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Close modal
+    setShowModal(false);
   };
 
   const getTotalItems = () =>
