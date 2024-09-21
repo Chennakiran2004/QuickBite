@@ -1,10 +1,11 @@
 import TabBar from "../TabBar";
 
 import { TabBarContainer } from "../TodaysMenu/styledComponents";
-const SearchPage = () => {
+const PreviousOrders = () => {
   return (
     <div>
-      <p>Search Page</p>
+      <p>Orders Page</p>
+
       <TabBarContainer>
         <TabBar />
       </TabBarContainer>
@@ -12,4 +13,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default PreviousOrders;

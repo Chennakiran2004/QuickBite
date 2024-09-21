@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const HeadingContainer = styled.div`
   display: flex;
   align-items: center;
@@ -12,19 +11,18 @@ export const HeadingContainer = styled.div`
   gap: 30px;
 `;
 
-
-
 export const Logo = styled.svg`
-width: 48px;
-height: 48px;
-flex-shrink: 0;
-`
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+`;
 
 export const LogoHeading = styled.h1`
-color: #000;
-font-feature-settings: 'liga' off;
-font-family: Poppins;
-font-size: 37px;
-font-style: normal;
-font-weight: 700;
-line-height: 40px; /* 108.108% */`
+  color: #000;
+  font-feature-settings: "liga" off;
+  font-family: Poppins;
+  font-size: 37px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px; /* 108.108% */
+`;

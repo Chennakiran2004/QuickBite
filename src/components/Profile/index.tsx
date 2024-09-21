@@ -1,17 +1,16 @@
+import TabBar from "../TabBar";
 
-import { TabBarContainer } from "../TodaysMenu/styledComponents"
-import TabBar from "../TabBar"
+import { TabBarContainer } from "../TodaysMenu/styledComponents";
 
 const Profile = () => {
+  return (
+    <div>
+      Profile
+      <TabBarContainer>
+        <TabBar />
+      </TabBarContainer>
+    </div>
+  );
+};
 
-    return (
-        <div>
-            Profile
-            <TabBarContainer>
-                <TabBar/>
-            </TabBarContainer>
-        </div>
-    )
-}
-
-export default Profile
+export default Profile;

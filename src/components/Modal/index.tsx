@@ -63,10 +63,10 @@ const Modal: React.FC<ModalProps> = ({
                           <ModalItemName>{item.name}</ModalItemName>
                           <ModalItemName>{item.description}</ModalItemName>
                         </ModalItemDescriptionContainer>
-                        <ModalItemPrice>
-                          ₹ {item.price * item.quantity}
-                        </ModalItemPrice>
                       </ModalListItemContainer>
+                      <ModalItemPrice>
+                        ₹ {item.price * item.quantity}
+                      </ModalItemPrice>
                     </ModalListItem>
                     <ModalHorizontalLine />
                   </>

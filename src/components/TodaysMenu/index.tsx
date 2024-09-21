@@ -34,7 +34,7 @@ const TodaysMenu = () => {
       items: [
         {
           id: 1,
-          name: "The Halal Guys1",
+          name: "The Halal Guys",
           price: 10,
           description: "Choice of Lorem Ipsum",
           image: "/Images/Food1.svg",
