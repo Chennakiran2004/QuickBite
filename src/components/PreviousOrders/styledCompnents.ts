@@ -4,7 +4,8 @@ import { gothicA1SemiBold } from "../../Constants/fontStyles";
 export const PreviousOrdersMainContainer = styled.div`
   background-color: #f5f5f5;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow: scroll;
 `;
 
 export const PreviousOrdersHeading = styled.h1`
@@ -19,4 +20,9 @@ export const PreviousOrdersHeading = styled.h1`
   letter-spacing: -0.4px;
   margin: 0px;
   padding-top: 24px;
+`;
+
+export const PreviousOrdersListContainer = styled.div`
+  height: 100%;
+  margin-bottom: 160px;
 `;
