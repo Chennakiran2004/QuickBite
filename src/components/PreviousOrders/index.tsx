@@ -1,15 +1,24 @@
+import PreviousOrderItem from "../PreviousOrderItem";
 import TabBar from "../TabBar";
 
 import { TabBarContainer } from "../TodaysMenu/styledComponents";
+import {
+  PreviousOrdersHeading,
+  PreviousOrdersMainContainer,
+} from "./styledCompnents";
+
 const PreviousOrders = () => {
   return (
-    <div>
-      <p>Orders Page</p>
-
+    <PreviousOrdersMainContainer>
+      <PreviousOrdersHeading>Orders</PreviousOrdersHeading>
+      <PreviousOrderItem />
+      <PreviousOrderItem />
+      <PreviousOrderItem />
+      <PreviousOrderItem />
       <TabBarContainer>
         <TabBar />
       </TabBarContainer>
-    </div>
+    </PreviousOrdersMainContainer>
   );
 };
 
