@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+  gothicA1Bold,
+  gothicA1Light,
+  gothicA1Regular,
+} from "../../Constants/fontStyles";
 
 export const SignInMainContainer = styled.div`
   display: flex;
@@ -26,15 +31,13 @@ export const BackImage = styled.img`
 `;
 
 export const SignAndLoginHeading = styled.h3`
+  ${gothicA1Bold}
   color: var(--Main-Color, #010f07);
   text-align: center;
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 24px;
   letter-spacing: 1px;
 `;
@@ -47,28 +50,25 @@ export const SignInTextContainer = styled.div`
 `;
 
 export const SignInHeading = styled.h1`
+  ${gothicA1Regular}
   color: #000;
   font-feature-settings:
     "liga" off,
     "clig" off;
   font-family: Inter;
   font-size: 26px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 42px; /* 161.538% */
   letter-spacing: 0.22px;
 `;
 
 export const SignInDescription = styled.p`
+  ${gothicA1Regular}
   color: var(--Body-Text, #868686);
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 24px;
   margin-top: 0px;
 `;
 export const FormContainer = styled.form`
@@ -80,22 +80,18 @@ export const FormContainer = styled.form`
 `;
 
 export const InputLabel = styled.label`
+  ${gothicA1Light}
   color: var(--Body-Text, #868686);
-  font-family: "Yu Gothic UI";
   font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
   line-height: 20px; /* 166.667% */
   letter-spacing: 0.8px;
   text-transform: uppercase;
 `;
 
 export const InputElement = styled.input`
+  ${gothicA1Regular}
   color: var(--Main-Color, #010f07);
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 24px; /* 150% */
   letter-spacing: -0.28px;
   width: 80%;
@@ -111,14 +107,12 @@ export const HorizontalLine = styled.hr`
 `;
 
 export const ForgotPassword = styled.button`
+  ${gothicA1Light}
   color: var(--Main-Color, #010f07);
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
-  font-weight: 300;
   line-height: 20px;
   text-align: center;
   width: 100%;
@@ -137,27 +131,23 @@ export const SignInCreateAccountContainer = styled.div`
 `;
 
 export const DontHaveAccountText = styled.p`
+  ${gothicA1Light}
   color: var(--Main-Color, #010f07);
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
   line-height: 20px;
   opacity: 0.64;
 `;
 
 export const CreateNewAccountButton = styled.button`
+  ${gothicA1Light}
   color: var(--Active-Color---1, #eea734);
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 14px;
-  font-style: normal;
-  font-weight: 300;
   line-height: 20px; /* 166.667% */
   outline: none;
   border: none;

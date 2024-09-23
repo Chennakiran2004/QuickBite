@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { gothicA1Light } from "../../Constants/fontStyles";
 
 export const TabBarContainerMainContainer = styled.div`
   display: flex;
@@ -25,10 +26,6 @@ export const TabBarItemContainer = styled.div`
   padding: 10px;
 `;
 
-// export const TabBarItemImage = styled.svg<{isActive: boolean}>`
-//   fill: ${({ isActive }) => (isActive ? '#EEA734' : '#868686')};
-// `
-
 export const TabBarItemImage = styled.svg.attrs<{ isActive: boolean }>({})<{
   isActive: boolean;
 }>`
@@ -38,13 +35,11 @@ export const TabBarItemImage = styled.svg.attrs<{ isActive: boolean }>({})<{
 export const TabBarItemName = styled.p<{ isActive: boolean }>`
   color: ${({ isActive }) => (isActive ? "#EEA734" : "#868686")};
   text-align: center;
-  font-family: "Yu Gothic UI";
   font-size: 10px;
-  font-style: normal;
-  font-weight: 300;
   line-height: normal;
   letter-spacing: 0.1px;
   text-align: center;
+  ${gothicA1Light}
 `;
 
 export const TabBarContainer1 = styled.div`

@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+  gothicA1Bold,
+  gothicA1Regular,
+  gothicA1SemiBold,
+} from "../../Constants/fontStyles";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -36,27 +41,25 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const DescriptionHeading = styled.h3`
+  ${gothicA1Bold}
   color: var(--UI-Gray-80, #3a3a3a);
   text-align: center;
   font-family: Poppins;
   font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 32px;
   margin: 0px;
 `;
 
 export const DescriptionText = styled.p`
+  ${gothicA1Regular}
   color: #3a3a3a;
   text-align: center;
-  font-family: Poppins;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 24px; /* 150% */
 `;
 
 export const GetStartedButton = styled.button`
+  ${gothicA1SemiBold}
   border-radius: 8px;
   background: var(--Active-Color---1, #eea734);
   color: #fff;
@@ -64,10 +67,7 @@ export const GetStartedButton = styled.button`
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 24px; /* 171.429% */
   letter-spacing: 0.8px;
   text-transform: uppercase;

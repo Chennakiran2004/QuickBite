@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { gothicA1Bold, gothicA1SemiBold } from "../../Constants/fontStyles";
 
 export const CheckoutPopupMainContainer = styled.div`
   display: flex;
@@ -17,16 +18,13 @@ export const CheckoutPopupTotalContainer = styled.div`
 `;
 
 export const ItemsCount = styled.p`
+  ${gothicA1SemiBold}
   color: #fff;
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
   line-height: 24px;
-  /* letter-spacing: -0.28px; */
 `;
 
 export const VerticalLine = styled.div`
@@ -36,14 +34,13 @@ export const VerticalLine = styled.div`
 `;
 
 export const TotalItemsPrice = styled.p`
+  ${gothicA1SemiBold}
+
   color: #fff;
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
   line-height: 24px; /* 150% */
   letter-spacing: -0.28px;
 `;
@@ -60,14 +57,12 @@ export const CheckoutImage = styled.img`
 `;
 
 export const CheckoutText = styled.p`
+  ${gothicA1Bold}
   color: #fff;
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 24px; /* 150% */
   letter-spacing: -0.28px;
 `;

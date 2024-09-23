@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { gothicA1SemiBold } from "../../Constants/fontStyles";
 
 export const TodaysMenuMainContainer = styled.div`
   width: 100%;
@@ -15,15 +16,13 @@ export const TodaysMenuSubContainer = styled.div`
 `;
 
 export const TodaysMenuHeading = styled.h1`
+  ${gothicA1SemiBold}
   color: var(--Main-Color, #010f07);
   text-align: center;
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
   line-height: 32px; /* 133.333% */
 `;
 export const TabBarContainer = styled.div`

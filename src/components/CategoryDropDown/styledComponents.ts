@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { gothicA1SemiBold } from "../../Constants/fontStyles";
 
 export const CategoryDrownDownMainContainer = styled.div`
   border-radius: 8px;
@@ -17,15 +18,14 @@ export const CategoryDropDownSubContainer = styled.div`
 `;
 
 export const CategoryDropDownHeading = styled.h1`
+  ${gothicA1SemiBold}
+
   color: var(--Main-Color, #010f07);
   text-align: center;
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
   line-height: 32px; /* 200% */
   letter-spacing: 0.14px;
 `;

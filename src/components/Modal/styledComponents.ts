@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+  gothicA1Bold,
+  gothicA1Light,
+  gothicA1SemiBold,
+} from "../../Constants/fontStyles";
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -38,11 +43,10 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalHeading = styled.h1`
+  ${gothicA1SemiBold}
   color: var(--Main-Color, #010f07);
   text-align: center;
-  font-family: "Yu Gothic UI";
   font-size: 24px;
-  font-weight: 600;
   line-height: 24px; /* 150% */
   letter-spacing: -0.4px;
 `;
@@ -84,6 +88,7 @@ export const ModalListItemContainer = styled.div`
 `;
 
 export const ModalItemQuantity = styled.p`
+  ${gothicA1Light}
   width: 24px;
   height: 24px;
   flex-shrink: 0;
@@ -92,29 +97,25 @@ export const ModalItemQuantity = styled.p`
   opacity: 0.3;
   background: #fff;
   color: #f8b64c;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-weight: 300;
   line-height: 24px; /* 150% */
   letter-spacing: -0.28px;
 `;
 
 export const ModalItemName = styled.p`
+  ${gothicA1Light}
   color: #010f07;
-  font-family: "Yu Gothic UI";
   font-size: 18px;
-  font-weight: 300;
   line-height: 24px; /* 133.333% */
   letter-spacing: -0.315px;
   margin: 0;
 `;
 
 export const ModalItemPrice = styled.p`
+  ${gothicA1SemiBold}
   color: #f8b64c;
   text-align: right;
-  font-family: "Yu Gothic UI";
   font-size: 14px;
-  font-weight: 600;
   line-height: 20px;
   letter-spacing: 0.6px;
 `;
@@ -137,6 +138,7 @@ export const ModalItemDescriptionContainer = styled.div`
 `;
 
 export const PlaceOrderButton = styled.button`
+  ${gothicA1Bold}
   border-radius: 8px;
   background: var(--Active-Color---1, #eea734);
   color: #fff;
@@ -144,10 +146,7 @@ export const PlaceOrderButton = styled.button`
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.8px;
   text-transform: uppercase;

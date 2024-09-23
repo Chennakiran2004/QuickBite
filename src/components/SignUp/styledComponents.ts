@@ -23,7 +23,6 @@ export const CreateAccountHeading = styled.h1`
     "clig" off;
   font-family: "Yu Gothic UI";
   font-size: 34px;
-  font-style: normal;
   font-weight: 300;
   line-height: 42px; /* 123.529% */
 `;
@@ -35,7 +34,6 @@ export const CreateAccountDescription = styled.p`
     "clig" off;
   font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
 `;
@@ -61,7 +59,6 @@ export const TermsAndConditionsText = styled.p`
     "clig" off;
   font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
   letter-spacing: -0.4px;

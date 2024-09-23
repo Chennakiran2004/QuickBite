@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+  gothicA1Bold,
+  gothicA1SemiBold,
+  gothicA1Regular,
+} from "../../Constants/fontStyles";
 
 export const TodaysMenuItemContainer = styled.div`
   display: flex;
@@ -24,11 +29,9 @@ export const TodaysMenuImage = styled.img`
 `;
 
 export const TodaysMenuItemDescriptionHeading = styled.h1`
+  ${gothicA1SemiBold}
   color: #010f07;
-  font-family: "Yu Gothic UI";
   font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
   line-height: 24px; /* 150% */
   letter-spacing: -0.28px;
   align-self: stretch;
@@ -36,11 +39,9 @@ export const TodaysMenuItemDescriptionHeading = styled.h1`
 `;
 
 export const TodaysMenuItemPrice = styled.p`
+  ${gothicA1Bold}
   color: #010f07;
-  font-family: "Yu Gothic UI";
   font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 24px; /* 171.429% */
   letter-spacing: -0.28px;
   align-self: stretch;
@@ -48,11 +49,9 @@ export const TodaysMenuItemPrice = styled.p`
 `;
 
 export const TodaysMenuItemDescription = styled.p`
+  ${gothicA1Regular}
   color: var(--Light-blue-gray-600, #475569);
-  font-family: "Yu Gothic UI";
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 24px; /* 171.429% */
   letter-spacing: -0.28px;
   margin: 0px;
@@ -74,6 +73,7 @@ export const TodaysMenuFoodImage = styled.img`
 `;
 
 export const TodaysMenuFoodAddButton = styled.button`
+  ${gothicA1SemiBold}
   display: flex;
   padding: 8px 36px;
   justify-content: center;
@@ -88,10 +88,7 @@ export const TodaysMenuFoodAddButton = styled.button`
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
   line-height: 24px; /* 120% */
   letter-spacing: -0.4px;
 `;
@@ -120,6 +117,7 @@ export const TodaysMenuFoodCountButton = styled.button`
 `;
 
 export const CountContainer = styled.div`
+  ${gothicA1SemiBold}
   display: flex;
   flex-direction: row;
   padding: 8px 24px;
@@ -135,10 +133,7 @@ export const CountContainer = styled.div`
   font-feature-settings:
     "liga" off,
     "clig" off;
-  font-family: "Yu Gothic UI";
   font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
   line-height: 24px; /* 120% */
   letter-spacing: -0.4px;
 `;

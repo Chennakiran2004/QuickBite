@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { gothicA1Bold } from "../../Constants/fontStyles";
 
 export const HeadingContainer = styled.div`
   display: flex;
@@ -18,11 +19,9 @@ export const Logo = styled.svg`
 `;
 
 export const LogoHeading = styled.h1`
+  ${gothicA1Bold}
   color: #000;
   font-feature-settings: "liga" off;
-  font-family: Poppins;
   font-size: 37px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 40px; /* 108.108% */
 `;
