@@ -58,7 +58,7 @@ export const PreviousOrderTotalPrice = styled.p`
   ${gothicA1SemiBold}
   color: #010f07;
   font-size: 16px;
-  line-height: 24px; /* 150% */
+  line-height: 24px;
   letter-spacing: -0.28px;
   align-self: stretch;
   margin: 0px;
@@ -68,6 +68,7 @@ export const PreviousOrderTotalPrice = styled.p`
 export const PreviousOrderHorizontalLine = styled.hr`
   width: 100%;
   background: #f3f2f2;
+  opacity: 0.3;
 `;
 
 export const OrderAgainContainer = styled.div`
