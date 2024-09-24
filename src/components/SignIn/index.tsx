@@ -74,10 +74,14 @@ const SignIn = () => {
     }
   };
 
+  const onClickCarousel = () => {
+    navigate("/");
+  };
+
   return (
     <SignInMainContainer>
       <SignAndLoginInHeadingContainer>
-        <BackImage src="/Images/back.svg" />
+        <BackImage onClick={onClickCarousel} src="/Images/back.svg" />
         <SignAndLoginHeading>Sign In</SignAndLoginHeading>
       </SignAndLoginInHeadingContainer>
       <SignInTextContainer>
