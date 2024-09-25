@@ -50,7 +50,7 @@ const TodaysMenuItem = ({
   };
 
   return (
-    <TodaysMenuItemContainer>
+    <TodaysMenuItemContainer data-testid="TodayMenuItemContainer">
       <TodaysMenuItemDescriptionContainer>
         <TodaysMenuItemDescriptionHeading>
           {item.name}
@@ -72,6 +72,7 @@ const TodaysMenuItem = ({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={handleAddClick}
+              data-testid="add-button"
             >
               <path
                 d="M4.00008 1.66675V6.33341M1.66675 4.00008H6.33341"
@@ -85,6 +86,7 @@ const TodaysMenuItem = ({
           <CountContainer>
             <TodaysMenuFoodCountButton onClick={handleMinusClick}>
               <MinusIcon
+                data-testid="minus-button"
                 width="8"
                 height="8"
                 viewBox="0 0 8 8"
@@ -102,6 +104,7 @@ const TodaysMenuItem = ({
             <span>{quantity}</span>
             <TodaysMenuFoodCountButton onClick={handleAddClick}>
               <PlusIcon
+                data-testid="plus-button"
                 width="8"
                 height="8"
                 viewBox="0 0 8 8"

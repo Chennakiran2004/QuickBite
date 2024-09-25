@@ -13,9 +13,12 @@ const Logout = () => {
   };
 
   return (
-    <LogoutMainContainer onClick={onClickLogout}>
-      <LogoutImage src="/Images/logout.svg" />
-      <LogoutText>Logout</LogoutText>
+    <LogoutMainContainer
+      data-testid="LogoutMainContainer"
+      onClick={onClickLogout}
+    >
+      <LogoutImage data-testid="logout-image" src="/Images/logout.svg" />
+      <LogoutText data-testid="logout-text">Logout</LogoutText>
     </LogoutMainContainer>
   );
 };

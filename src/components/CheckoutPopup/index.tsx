@@ -16,7 +16,7 @@ interface checkoutPopupProps {
 
 const CheckoutPopup = ({ totalItems, totalPrice }: checkoutPopupProps) => {
   return (
-    <CheckoutPopupMainContainer>
+    <CheckoutPopupMainContainer data-testid="CheckoutPopupMainContainer">
       <CheckoutPopupTotalContainer>
         <ItemsCount>{totalItems} Item</ItemsCount>
         <VerticalLine></VerticalLine>
