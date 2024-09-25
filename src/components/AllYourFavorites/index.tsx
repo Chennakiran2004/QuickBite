@@ -18,19 +18,25 @@ const AllYourFavorites = () => {
   };
 
   return (
-    <AllYourFavoritesContainer>
+    <AllYourFavoritesContainer data-testid="AllYourFavoritesContainer">
       <div>
         <HeadingComponent />
-        <AllYourFavoritesImage src="/Images/AllYourFavorites.svg" />
+        <AllYourFavoritesImage
+          data-testid="AllYourFavoritesImage"
+          src="/Images/AllYourFavorites.svg"
+        />
       </div>
-      <AllYourFavoritesDescriptionContainer>
-        <AllYourFavoritesContainerHeading>
+      <AllYourFavoritesDescriptionContainer data-testid="description-container">
+        <AllYourFavoritesContainerHeading data-testid="description-heading">
           All Your Favorites
         </AllYourFavoritesContainerHeading>
-        <AllYourFavoritesContainerDescription>
+        <AllYourFavoritesContainerDescription data-testid="description">
           Order from the best local restaurants with easy, on-demand delivery.
         </AllYourFavoritesContainerDescription>
-        <GlobalButton onClick={handleGetStartedButton}>
+        <GlobalButton
+          data-testid="get-started-button"
+          onClick={handleGetStartedButton}
+        >
           GET STARTED
         </GlobalButton>
       </AllYourFavoritesDescriptionContainer>

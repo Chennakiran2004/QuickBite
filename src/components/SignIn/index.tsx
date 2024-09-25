@@ -74,38 +74,71 @@ const SignIn = () => {
     }
   };
 
+  const onClickCarousel = () => {
+    navigate("/");
+  };
+
   return (
-    <SignInMainContainer>
-      <SignAndLoginInHeadingContainer>
-        <BackImage src="/Images/back.svg" />
-        <SignAndLoginHeading>Sign In</SignAndLoginHeading>
+    <SignInMainContainer data-testid="signInContainer">
+      <SignAndLoginInHeadingContainer data-testid="heading-container">
+        <BackImage
+          data-testid="backImage"
+          onClick={onClickCarousel}
+          src="/Images/back.svg"
+        />
+        <SignAndLoginHeading data-testid="signIn-text">
+          Sign In
+        </SignAndLoginHeading>
       </SignAndLoginInHeadingContainer>
-      <SignInTextContainer>
-        <SignInHeading>Welcome to QuickBite Food Services</SignInHeading>
-        <SignInDescription>
+      <SignInTextContainer data-testid="text-container">
+        <SignInHeading data-testid="text-heading">
+          Welcome to QuickBite Food Services
+        </SignInHeading>
+        <SignInDescription data-testid="text-description">
           Enter your Phone number or Email <br /> address for sign in. Enjoy
           your food :)
         </SignInDescription>
       </SignInTextContainer>
-      <FormContainer onSubmit={(event) => event.preventDefault()}>
-        <InputLabel>EMAIL ADDRESS</InputLabel>
-        <InputElement value={email} onChange={onChangeEmail} type="text" />
+      <FormContainer
+        data-testid="form-container"
+        onSubmit={(event) => event.preventDefault()}
+      >
+        <InputLabel data-testid="email">EMAIL ADDRESS</InputLabel>
+        <InputElement
+          data-testid="email-input"
+          value={email}
+          onChange={onChangeEmail}
+          type="text"
+        />
         <HorizontalLine />
-        {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
+        {emailError && (
+          <ErrorMessage data-testid="email-error">{emailError}</ErrorMessage>
+        )}
 
-        <InputLabel>PASSWORD</InputLabel>
+        <InputLabel data-testid="password">PASSWORD</InputLabel>
         <InputElement
           type="text"
+          data-testid="password-input"
           onChange={onChangePassword}
           value={maskedPassword}
         />
         <input type="hidden" value={password} />
         <HorizontalLine />
-        {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
+        {passwordError && (
+          <ErrorMessage data-testid="password-error">
+            {passwordError}
+          </ErrorMessage>
+        )}
 
-        <ForgotPassword>Forgot Password?</ForgotPassword>
+        <ForgotPassword data-testid="forgot-password">
+          Forgot Password?
+        </ForgotPassword>
 
-        <GlobalButton type="button" onClick={onsubmitSignIn}>
+        <GlobalButton
+          data-testid="signIn-button"
+          type="button"
+          onClick={onsubmitSignIn}
+        >
           SIGN IN
         </GlobalButton>
       </FormContainer>

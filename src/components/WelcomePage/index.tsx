@@ -19,16 +19,25 @@ const WelcomePage = () => {
 
   return (
     <MainContainer data-testid="welcomePage-main-container">
-      <BackgroundImage src="/Images/Circle Background.jpg" />
+      <BackgroundImage
+        data-testid="welcomePage-background-image"
+        src="/Images/Circle Background.jpg"
+      />
       <HeadingComponent />
-      <CarouselFirstImage src="/Images/welcomePage.svg" />
+      <CarouselFirstImage
+        data-testid="welcomePage-carousel-image"
+        src="/Images/welcomePage.svg"
+      />
       <DescriptionContainer>
         <DescriptionHeading>Welcome</DescriptionHeading>
         <DescriptionText>
           It’s a pleasure to meet you. We are excited that you’re here so let’s
           get started!
         </DescriptionText>
-        <GlobalButton onClick={handleGetStartedButton}>
+        <GlobalButton
+          data-testid="get-started-button"
+          onClick={handleGetStartedButton}
+        >
           GET STARTED
         </GlobalButton>
       </DescriptionContainer>

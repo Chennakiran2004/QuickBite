@@ -22,18 +22,24 @@ const ChooseYourFood = () => {
   };
 
   return (
-    <ChooseYourFoodMainContainer>
+    <ChooseYourFoodMainContainer data-testid="ChooseYourFoodContainer">
       <HeadingComponent />
-      <ChooseYourFoodImage src="/Images/ChooseYourFood.svg" />
-      <AllYourFavoritesDescriptionContainer>
-        <AllYourFavoritesContainerHeading>
+      <ChooseYourFoodImage
+        data-testid="ChooseYourFoodImage"
+        src="/Images/ChooseYourFood.svg"
+      />
+      <AllYourFavoritesDescriptionContainer data-testid="description-container">
+        <AllYourFavoritesContainerHeading data-testid="description-heading">
           Choose you food
         </AllYourFavoritesContainerHeading>
-        <AllYourFavoritesContainerDescription>
+        <AllYourFavoritesContainerDescription data-testid="description">
           Easily find your type of food craving and you’ll get delivery in wide
           range.
         </AllYourFavoritesContainerDescription>
-        <GlobalButton onClick={handleGetStartedButton}>
+        <GlobalButton
+          data-testid="get-started-button"
+          onClick={handleGetStartedButton}
+        >
           GET STARTED
         </GlobalButton>
       </AllYourFavoritesDescriptionContainer>

@@ -2,8 +2,9 @@ import { HeadingContainer, Logo, LogoHeading } from "./styledComponents";
 
 const HeadingComponent = () => {
   return (
-    <HeadingContainer>
+    <HeadingContainer data-testid="HeadingContainer">
       <Logo
+        data-testid="logo"
         width="65"
         height="65"
         viewBox="0 0 65 65"
@@ -27,7 +28,7 @@ const HeadingComponent = () => {
           fill="#FFD15C"
         />
       </Logo>
-      <LogoHeading>QucikBite</LogoHeading>
+      <LogoHeading data-testid="logo-heading">QucikBite</LogoHeading>
     </HeadingContainer>
   );
 };

@@ -42,16 +42,18 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <ModalOverlay onClick={onClose} />
-      <ModalBackground>
+      <ModalOverlay data-testid="modal-overlay" onClick={onClose} />
+      <ModalBackground data-testid="modal-container">
         <ModalContent>
           <ModalHeader>
-            <ModalCloseButton onClick={onClose}>×</ModalCloseButton>
+            <ModalCloseButton data-testid="close-button" onClick={onClose}>
+              ×
+            </ModalCloseButton>
             <ModalHeading>Selected Items</ModalHeading>
           </ModalHeader>
           <ModalBody>
             {cartItems.length === 0 ? (
-              <p>No items selected.</p>
+              <p data-testid="no-items-selected">No items selected.</p>
             ) : (
               <ModalUnorderedList>
                 {cartItems.map((item) => (
