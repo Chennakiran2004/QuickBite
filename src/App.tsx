@@ -9,23 +9,24 @@ import { TabProvider } from "./Context/TabContext";
 import PreviousOrders from "./components/PreviousOrders";
 import SearchPage from "./components/SearchPage";
 import Profile from "./components/Profile";
+import AddItemForm from "./components/AddItemForm";
 
 function App() {
   return (
     <div className="App">
-      <TabProvider>
+      {/* <TabProvider>
         <Router>
           <Routes>
             <Route path="/" element={<HomeCarousel />} />
             <Route path="/signIn" element={<SignIn />} />
-            {/* <Route path='/signUp' element={<SignUp/>}/> */}
             <Route path="/TodaysMenu" element={<TodaysMenu />} />
             <Route path="/orders" element={<PreviousOrders />} />
             <Route path="/searchPage" element={<SearchPage />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </Router>
-      </TabProvider>
+      </TabProvider> */}
+      <AddItemForm />
     </div>
   );
 }
