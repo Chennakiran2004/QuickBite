@@ -69,4 +69,46 @@ describe("Home carousel component", () => {
     expect(sliderProps.appendDots).toBeDefined();
     expect(sliderProps.dotsClass).toBe("slick-dots custom-dots");
   });
+
+  it("applies correct class to slider container", () => {
+    renderComponent();
+    const sliderContainer = screen.getByTestId("slider-container");
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(sliderContainer.parentElement).toHaveClass("slider-container");
+  });
+
+  it("sets correct autoplay speed", () => {
+    renderComponent();
+    expect(sliderProps.autoplaySpeed).toBe(2000);
+  });
+
+  it("sets correct slide transition speed", () => {
+    renderComponent();
+    expect(sliderProps.speed).toBe(500);
+  });
+
+  it("disables infinite looping", () => {
+    renderComponent();
+    expect(sliderProps.infinite).toBe(false);
+  });
+
+  it("enables arrows", () => {
+    renderComponent();
+    expect(sliderProps.arrows).toBe(true);
+  });
+
+  it("sets initial slide to 0", () => {
+    renderComponent();
+    expect(sliderProps.initialSlide).toBe(0);
+  });
+
+  it("applies custom appendDots function", () => {
+    renderComponent();
+    const appendDotsFunction = sliderProps.appendDots;
+    const mockDots = <div>Mock Dots</div>;
+    const result = appendDotsFunction(mockDots);
+    expect(result.props.style).toEqual({ position: "absolute", top: "79%" });
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(result.props.children).toBe(mockDots);
+  });
 });
