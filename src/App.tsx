@@ -8,11 +8,12 @@ import { TabProvider } from "./Context/TabContext";
 import PreviousOrders from "./components/PreviousOrders";
 import SearchPage from "./components/SearchPage";
 import Profile from "./components/Profile";
+import CategoryData from "./components/SearchPage";
 
 function App() {
   return (
     <div className="App">
-      <TabProvider>
+      {/* <TabProvider>
         <Router>
           <Routes>
             <Route path="/" element={<HomeCarousel />} />
@@ -23,7 +24,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </Router>
-      </TabProvider>
+      </TabProvider> */}
+      <CategoryData />
     </div>
   );
 }

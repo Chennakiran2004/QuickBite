@@ -99,10 +99,7 @@ const SignIn = () => {
           your food :)
         </SignInDescription>
       </SignInTextContainer>
-      <FormContainer
-        data-testid="form-container"
-        onSubmit={(event) => event.preventDefault()}
-      >
+      <FormContainer data-testid="form-container">
         <InputLabel data-testid="email">EMAIL ADDRESS</InputLabel>
         <InputElement
           data-testid="email-input"

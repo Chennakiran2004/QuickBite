@@ -38,15 +38,23 @@ const CategoryDropDown = ({
   };
 
   return (
-    <CategoryDrownDownMainContainer>
+    <CategoryDrownDownMainContainer data-testid="CategoryDrownDownMainContainer">
       <CategoryDropDownSubContainer onClick={toggleMenuItemsList}>
-        <CategoryDropDownHeading>{title}</CategoryDropDownHeading>
+        <CategoryDropDownHeading data-testid="category-title">
+          {title}
+        </CategoryDropDownHeading>
         <CategoryDropDownImage
+          data-testid="dropDown-arrow-image"
           isRotates={showMenuItemsList}
+          data-rotates={showMenuItemsList}
           src="/Images/back.svg"
         />
       </CategoryDropDownSubContainer>
-      <MenuItemsList isRotates={showMenuItemsList}>
+      <MenuItemsList
+        role="list"
+        data-rotates={showMenuItemsList}
+        isRotates={showMenuItemsList}
+      >
         {showMenuItemsList &&
           items.map((item, index) => (
             <TodaysMenuItem

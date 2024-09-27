@@ -77,4 +77,43 @@ describe("TodayMenuItem component", () => {
 
     expect(screen.queryByTestId("minus-button")).not.toBeInTheDocument();
   });
+
+  it("renders the correct quantity when it is greater than 1", () => {
+    renderComponent(3);
+
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.queryByText("ADD")).not.toBeInTheDocument();
+  });
+
+  it("displays the 'ADD' button when quantity is 0", () => {
+    renderComponent(0);
+
+    expect(screen.getByText("ADD")).toBeInTheDocument();
+    expect(screen.queryByText("0")).not.toBeInTheDocument();
+  });
+
+  it("increases the quantity when the plus button is clicked", () => {
+    renderComponent(2);
+
+    fireEvent.click(screen.getByTestId("plus-button"));
+    expect(mockOnAddItem).toHaveBeenCalledWith(menuItem);
+  });
+
+  it("does not call onAddItem or onRemoveItem when the component is rendered without interaction", () => {
+    renderComponent(1);
+
+    expect(mockOnAddItem).not.toHaveBeenCalled();
+    expect(mockOnRemoveItem).not.toHaveBeenCalled();
+  });
+
+  it("handles rapid add and remove clicks correctly", () => {
+    renderComponent(1);
+
+    fireEvent.click(screen.getByTestId("plus-button"));
+    fireEvent.click(screen.getByTestId("minus-button"));
+    fireEvent.click(screen.getByTestId("plus-button"));
+
+    expect(mockOnAddItem).toHaveBeenCalledTimes(2);
+    expect(mockOnRemoveItem).toHaveBeenCalledTimes(1);
+  });
 });
