@@ -2,11 +2,11 @@ import TodaysMenuItem from ".";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 const menuItem = {
-  id: 1,
+  item_id: 1,
   name: "Test Item",
   price: 10,
   description: "Test Description",
-  image: "/test-image.jpg",
+  item_image_url: "/test-image.jpg",
 };
 
 const mockOnAddItem = jest.fn();
@@ -39,7 +39,10 @@ describe("TodayMenuItem component", () => {
     expect(screen.getByText(menuItem.name)).toBeInTheDocument();
     expect(screen.getByText(`₹${menuItem.price}`)).toBeInTheDocument();
     expect(screen.getByText(menuItem.description)).toBeInTheDocument();
-    expect(screen.getByRole("img")).toHaveAttribute("src", menuItem.image);
+    expect(screen.getByRole("img")).toHaveAttribute(
+      "src",
+      menuItem.item_image_url
+    );
     expect(screen.getByText("ADD")).toBeInTheDocument();
     expect(screen.queryByText("0")).not.toBeInTheDocument();
   });

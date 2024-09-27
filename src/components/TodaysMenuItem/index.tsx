@@ -15,11 +15,11 @@ import {
 } from "./styledComponents";
 
 interface MenuItem {
-  id: number;
+  item_id: number;
   name: string;
   price: number;
   description: string;
-  image: string;
+  item_image_url: string;
 }
 
 interface TodaysMenuItemProps {
@@ -61,7 +61,7 @@ const TodaysMenuItem = ({
         </TodaysMenuItemDescription>
       </TodaysMenuItemDescriptionContainer>
       <TodaysMenuFoodImageContainer>
-        <TodaysMenuFoodImage src={item.image} />
+        <TodaysMenuFoodImage src={item.item_image_url} />
         {quantity === 0 ? (
           <TodaysMenuFoodAddButton>
             ADD

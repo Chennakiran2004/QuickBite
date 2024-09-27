@@ -2,11 +2,11 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import CategoryDropDown from ".";
 
 interface MenuItem {
-  id: number;
+  item_id: number;
   name: string;
   price: number;
   description: string;
-  image: string;
+  item_image_url: string;
 }
 
 jest.mock("../TodaysMenuItem", () => {
@@ -22,7 +22,7 @@ jest.mock("../TodaysMenuItem", () => {
     quantity: number;
   }) {
     return (
-      <div data-testid={`menu-item-${item.id}`}>
+      <div data-testid={`menu-item-${item.item_id}`}>
         <span>{item.name}</span>
         <button onClick={() => onAddItem(item)}>Add</button>
         <button onClick={() => onRemoveItem(item)}>Remove</button>
@@ -34,18 +34,18 @@ jest.mock("../TodaysMenuItem", () => {
 
 const mockItems: MenuItem[] = [
   {
-    id: 1,
+    item_id: 1,
     name: "Item 1",
     price: 10,
     description: "Description 1",
-    image: "image1.jpg",
+    item_image_url: "image1.jpg",
   },
   {
-    id: 2,
+    item_id: 2,
     name: "Item 2",
     price: 20,
     description: "Description 2",
-    image: "image2.jpg",
+    item_image_url: "image2.jpg",
   },
 ];
 
