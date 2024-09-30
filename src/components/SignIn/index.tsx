@@ -2,6 +2,8 @@ import { ChangeEvent, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import Cookies from "js-cookie";
+
 import {
   BackImage,
   InputLabel,
@@ -16,22 +18,28 @@ import {
   SignInMainContainer,
   SignInTextContainer,
   ErrorMessage,
+  SignInCreateAccountContainer,
+  DontHaveAccountText,
+  CreateNewAccountButton,
 } from "./styledComponents";
 
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
+import axios from "axios";
+import { fetchApi } from "../../utils/fetchApi";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [maskedPassword, setMaskedPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [userNameError, serUserNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [apiError, setApiError] = useState("");
   const navigate = useNavigate();
 
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    setUserName(event.target.value);
     if (event.target.value) {
-      setEmailError("");
+      serUserNameError("");
     }
   };
 
@@ -44,38 +52,68 @@ const SignIn = () => {
     }
   };
 
-  const validEmail = "Q";
-  const validPassword = "Q";
-
-  const onsubmitSignIn = () => {
-    setEmailError("");
+  const onsubmitSignIn = async () => {
+    serUserNameError("");
     setPasswordError("");
+    setApiError("");
 
     let hasError = false;
 
-    if (!email) {
-      setEmailError("Email is required");
-      hasError = true;
-    } else if (email !== validEmail) {
-      setEmailError("Invalid email");
+    if (!userName) {
+      serUserNameError("User Name is required");
       hasError = true;
     }
 
     if (!password) {
       setPasswordError("Password is required");
       hasError = true;
-    } else if (password !== validPassword) {
-      setPasswordError("Invalid password");
-      hasError = true;
     }
 
     if (!hasError) {
-      navigate("/TodaysMenu");
+      try {
+        const headers = {
+          "Content-Type": "application/json",
+        };
+
+        const response = await axios.post(
+          `${fetchApi}qb_users/signin/user/`,
+          {
+            username: userName,
+            password: password,
+          },
+          { headers }
+        );
+
+        const { access_token } = response.data;
+
+        Cookies.set("access_token", access_token, {
+          expires: 30,
+          secure: true,
+        });
+
+        console.log("Signed in successfully:", response.data);
+
+        navigate("/TodaysMenu");
+      } catch (error: any) {
+        if (error.response) {
+          setApiError(
+            error.response.data.error || "Failed to sign in. Please try again."
+          );
+          console.error("Error during sign-in:", error.response.data);
+        } else {
+          setApiError("Failed to sign in. Please try again.");
+          console.error("Error during sign-in:", error);
+        }
+      }
     }
   };
 
   const onClickCarousel = () => {
     navigate("/");
+  };
+
+  const handleCreateAccount = () => {
+    navigate("/signUp");
   };
 
   return (
@@ -100,18 +138,17 @@ const SignIn = () => {
         </SignInDescription>
       </SignInTextContainer>
       <FormContainer data-testid="form-container">
-        <InputLabel data-testid="email">EMAIL ADDRESS</InputLabel>
+        <InputLabel data-testid="email">USER NAME</InputLabel>
         <InputElement
           data-testid="email-input"
-          value={email}
+          value={userName}
           onChange={onChangeEmail}
           type="text"
         />
         <HorizontalLine />
-        {emailError && (
-          <ErrorMessage data-testid="email-error">{emailError}</ErrorMessage>
+        {userNameError && (
+          <ErrorMessage data-testid="email-error">{userNameError}</ErrorMessage>
         )}
-
         <InputLabel data-testid="password">PASSWORD</InputLabel>
         <InputElement
           type="text"
@@ -126,11 +163,9 @@ const SignIn = () => {
             {passwordError}
           </ErrorMessage>
         )}
-
         <ForgotPassword data-testid="forgot-password">
           Forgot Password?
         </ForgotPassword>
-
         <GlobalButton
           data-testid="signIn-button"
           type="button"
@@ -138,13 +173,14 @@ const SignIn = () => {
         >
           SIGN IN
         </GlobalButton>
+        {apiError && <ErrorMessage>{apiError}</ErrorMessage>}{" "}
       </FormContainer>
-      {/* <SignInCreateAccountContainer>
-                <DontHaveAccountText>Don't have an account?</DontHaveAccountText>
-                <CreateNewAccountButton onClick={handleCreateAccount}>
-                    Create new account
-                </CreateNewAccountButton>
-            </SignInCreateAccountContainer> */}
+      <SignInCreateAccountContainer>
+        <DontHaveAccountText>Don't have an account?</DontHaveAccountText>
+        <CreateNewAccountButton onClick={handleCreateAccount}>
+          Create new account
+        </CreateNewAccountButton>
+      </SignInCreateAccountContainer>
     </SignInMainContainer>
   );
 };

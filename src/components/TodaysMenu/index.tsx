@@ -12,9 +12,10 @@ import {
 } from "./styledComponents";
 import Modal from "../Modal";
 import axios from "axios";
+import { fetchApi } from "../../utils/fetchApi";
 
 interface MenuItem {
-  item_id: number;
+  item_id: string;
   name: string;
   price: number;
   description: string;
@@ -26,6 +27,7 @@ interface Category {
   name: string;
   items: MenuItem[];
 }
+
 interface CartItem extends MenuItem {
   quantity: number;
 }
@@ -37,7 +39,7 @@ const TodaysMenu = () => {
 
   useEffect(() => {
     axios
-      .get("http://10.18.106.223:8001/qb_order/get/categories/")
+      .get(`${fetchApi}qb_order/get/categories/`) // Change to 127.0.0.1
       .then((response) => {
         setCategories(response.data.categories);
       })
@@ -93,6 +95,7 @@ const TodaysMenu = () => {
 
   const getTotalItems = () =>
     cart.reduce((total, item) => total + item.quantity, 0);
+
   const getTotalPrice = () =>
     cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -101,16 +104,20 @@ const TodaysMenu = () => {
       <TodaysMenuHeading>Today's Menu</TodaysMenuHeading>
       <TodaysMenuSubContainer>
         <CategoryDropDownListContainer>
-          {categories.map((category, index) => (
-            <CategoryDropDown
-              key={category.category_id}
-              title={category.name}
-              items={category.items}
-              onAddItem={addToCart}
-              onRemoveItem={removeFromCart}
-              getItemQuantity={getItemQuantity}
-            />
-          ))}
+          {categories.length > 0 ? (
+            categories.map((category) => (
+              <CategoryDropDown
+                key={category.category_id}
+                title={category.name}
+                items={category.items}
+                onAddItem={addToCart}
+                onRemoveItem={removeFromCart}
+                getItemQuantity={getItemQuantity}
+              />
+            ))
+          ) : (
+            <p>No categories available</p>
+          )}
         </CategoryDropDownListContainer>
       </TodaysMenuSubContainer>
       <TabBarContainer>

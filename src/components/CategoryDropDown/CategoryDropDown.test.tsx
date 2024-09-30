@@ -2,7 +2,7 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import CategoryDropDown from ".";
 
 interface MenuItem {
-  item_id: number;
+  item_id: string;
   name: string;
   price: number;
   description: string;
@@ -34,14 +34,14 @@ jest.mock("../TodaysMenuItem", () => {
 
 const mockItems: MenuItem[] = [
   {
-    item_id: 1,
+    item_id: "1",
     name: "Item 1",
     price: 10,
     description: "Description 1",
     item_image_url: "image1.jpg",
   },
   {
-    item_id: 2,
+    item_id: "2",
     name: "Item 2",
     price: 20,
     description: "Description 2",

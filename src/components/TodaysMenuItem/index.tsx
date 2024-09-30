@@ -15,7 +15,7 @@ import {
 } from "./styledComponents";
 
 interface MenuItem {
-  item_id: number;
+  item_id: string;
   name: string;
   price: number;
   description: string;

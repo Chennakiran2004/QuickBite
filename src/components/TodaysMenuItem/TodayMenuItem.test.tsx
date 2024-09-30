@@ -2,7 +2,7 @@ import TodaysMenuItem from ".";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 const menuItem = {
-  item_id: 1,
+  item_id: "1",
   name: "Test Item",
   price: 10,
   description: "Test Description",
