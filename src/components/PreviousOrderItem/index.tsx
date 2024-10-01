@@ -1,12 +1,12 @@
 import React from "react";
 
 import {
-  OrderAgainContainer,
-  OrderAgainText,
   PreviousOrderDate,
   PreviousOrderDetailsContainer,
   PreviousOrderDetailsTextContainer,
   PreviousOrderHorizontalLine,
+  PreviousOrdersImageContainer,
+  PreviousOrdersImages,
   PreviousOrdersSubContainer,
   PreviousOrderStatus,
   PreviousOrderTotalPrice,
@@ -15,17 +15,18 @@ import {
 const PreviousOrderItem: React.FC = () => {
   return (
     <PreviousOrdersSubContainer>
+      <PreviousOrdersImageContainer>
+        <PreviousOrdersImages alt="food" src="/Images/Food1.svg" />
+        <PreviousOrdersImages alt="food" src="/Images/Food1.svg" />
+      </PreviousOrdersImageContainer>
+      <PreviousOrderHorizontalLine />
       <PreviousOrderDetailsContainer>
         <PreviousOrderDetailsTextContainer>
           <PreviousOrderStatus>Order Delivered</PreviousOrderStatus>
-          <PreviousOrderDate>May 2, 2005</PreviousOrderDate>
+          <PreviousOrderDate>Placed at 8th Jan 2024, 19:11pm</PreviousOrderDate>
         </PreviousOrderDetailsTextContainer>
-        <PreviousOrderTotalPrice>₹ 395</PreviousOrderTotalPrice>
+        <PreviousOrderTotalPrice>₹ 395 {">"} </PreviousOrderTotalPrice>
       </PreviousOrderDetailsContainer>
-      <PreviousOrderHorizontalLine />
-      <OrderAgainContainer>
-        <OrderAgainText>Order Again</OrderAgainText>
-      </OrderAgainContainer>
     </PreviousOrdersSubContainer>
   );
 };

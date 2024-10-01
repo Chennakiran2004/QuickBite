@@ -12,7 +12,6 @@ export const PreviousOrdersSubContainer = styled.div`
   padding: 8px;
   border-radius: 8px;
   background: #fff;
-  gap: 4px;
 `;
 
 export const PreviousOrderDetailsContainer = styled.div`
@@ -25,14 +24,13 @@ export const PreviousOrderDetailsContainer = styled.div`
   background: #fff;
   flex-shrink: 0;
   margin: auto;
-  padding: 8px;
 `;
 
 export const PreviousOrderDetailsTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  text-align: start;
 `;
 
 export const PreviousOrderStatus = styled.h3`
@@ -82,4 +80,23 @@ export const OrderAgainText = styled.p`
   ${gothicA1SemiBold}
   color: var(--Active-Color---1, #EEA734);
   margin: 0px;
+`;
+
+export const PreviousOrdersImageContainer = styled.div`
+  width: 94%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #fff;
+  flex-shrink: 0;
+  margin: auto;
+  gap: 8px;
+  padding: 8px;
+  background-color: #fafafa;
+`;
+
+export const PreviousOrdersImages = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
 `;
