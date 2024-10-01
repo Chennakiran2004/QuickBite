@@ -1,5 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
 import {
   BackImage,
   HorizontalLine,
@@ -19,6 +21,7 @@ import {
   TermsAndConditionsText,
 } from "./styledComponents";
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
+import { fetchApi } from "../../utils/fetchApi";
 
 const SignUp = () => {
   const [fullName, setFullName] = useState("");
@@ -29,6 +32,7 @@ const SignUp = () => {
   const [fullNameError, setFullNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [apiError, setApiError] = useState("");
 
   const navigate = useNavigate();
 
@@ -59,7 +63,7 @@ const SignUp = () => {
     navigate("/signIn");
   };
 
-  const handleSignUp = (event: FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     let hasError = false;
@@ -67,6 +71,7 @@ const SignUp = () => {
     setFullNameError("");
     setEmailError("");
     setPasswordError("");
+    setApiError("");
 
     if (!fullName) {
       setFullNameError("Full Name is required");
@@ -90,14 +95,46 @@ const SignUp = () => {
     }
 
     if (!hasError) {
-      navigate("/TodaysMenu");
+      try {
+        const headers = {
+          "Content-Type": "application/json",
+        };
+
+        const response = await axios.post(
+          `${fetchApi}qb_users/create/user/`,
+          {
+            username: fullName,
+            email: emailAddress,
+            password: password,
+          },
+          { headers }
+        );
+
+        const accessToken = response.data.access_token;
+        console.log(accessToken);
+        Cookies.set("access_token", accessToken, { expires: 30, secure: true });
+
+        console.log("Account created successfully:", response.data);
+        navigate("/TodaysMenu");
+      } catch (error: any) {
+        if (error.response) {
+          console.error("Error creating account:", error.response.data);
+          setApiError(
+            error.response.data.error ||
+              "Failed to create account. Please try again."
+          );
+        } else {
+          setApiError("Failed to create account. Please try again.");
+          console.error("Error creating account:", error);
+        }
+      }
     }
   };
 
   return (
     <SignUpMainContainer>
       <SignAndLoginInHeadingContainer>
-        <BackImage src="/Images/back.svg" />
+        <BackImage src="/Images/back.svg" onClick={handleAlreadyHaveAccount} />
         <SignAndLoginHeading>Create Account</SignAndLoginHeading>
       </SignAndLoginInHeadingContainer>
 
@@ -122,7 +159,6 @@ const SignUp = () => {
           <HorizontalLine />
           {fullNameError && <ErrorMessage>{fullNameError}</ErrorMessage>}
         </>
-
         <>
           <InputLabel>EMAIL ADDRESS</InputLabel>
           <InputElement
@@ -133,7 +169,6 @@ const SignUp = () => {
           <HorizontalLine />
           {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
         </>
-
         <>
           <InputLabel>PASSWORD</InputLabel>
           <InputElement
@@ -145,8 +180,9 @@ const SignUp = () => {
           <HorizontalLine />
           {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
         </>
-
         <GlobalButton type="submit">SIGN UP</GlobalButton>
+        {apiError && <ErrorMessage>{apiError}</ErrorMessage>}{" "}
+        {/* Display API error */}
       </CreateAccountFormContainer>
       <TermsAndConditionsText>
         By Signing up you agree to our Terms Conditions & Privacy Policy.

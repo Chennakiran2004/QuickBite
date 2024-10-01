@@ -1,6 +1,8 @@
 import { ChangeEvent, useState } from "react";
-
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { fetchApi } from "../../utils/fetchApi";
+import { getCookie, setCookie } from "../../utils/StorageUtilites";
 
 import {
   BackImage,
@@ -16,66 +18,83 @@ import {
   SignInMainContainer,
   SignInTextContainer,
   ErrorMessage,
+  SignInCreateAccountContainer,
+  DontHaveAccountText,
+  CreateNewAccountButton,
 } from "./styledComponents";
 
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [maskedPassword, setMaskedPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [apiError, setApiError] = useState("");
   const navigate = useNavigate();
 
+  const jwtToken = getCookie();
+  if (jwtToken) {
+    return <Navigate to="/TodaysMenu" />;
+  }
+
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-    if (event.target.value) {
-      setEmailError("");
-    }
+    setUserName(event.target.value);
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     const inputPassword = event.target.value;
     setPassword(inputPassword);
     setMaskedPassword("*".repeat(inputPassword.length));
-    if (inputPassword) {
-      setPasswordError("");
-    }
   };
 
-  const validEmail = "Q";
-  const validPassword = "Q";
+  const onSubmitSuccess = (accessToken: string) => {
+    setCookie("access_token", accessToken, { expires: 30, secure: true });
+    console.log("Signed in successfully");
+    navigate("/TodaysMenu");
+  };
 
-  const onsubmitSignIn = () => {
-    setEmailError("");
-    setPasswordError("");
+  const onSubmitFailure = (errorMsg: string) => {
+    setApiError(errorMsg);
+  };
 
-    let hasError = false;
+  const onsubmitSignIn = async () => {
+    setApiError("");
 
-    if (!email) {
-      setEmailError("Email is required");
-      hasError = true;
-    } else if (email !== validEmail) {
-      setEmailError("Invalid email");
-      hasError = true;
-    }
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
 
-    if (!password) {
-      setPasswordError("Password is required");
-      hasError = true;
-    } else if (password !== validPassword) {
-      setPasswordError("Invalid password");
-      hasError = true;
-    }
+      const response = await axios.post(
+        `${fetchApi}qb_users/signin/user/`,
+        {
+          username: userName,
+          password: password,
+        },
+        { headers }
+      );
 
-    if (!hasError) {
-      navigate("/TodaysMenu");
+      const { access_token } = response.data;
+      onSubmitSuccess(access_token);
+    } catch (error: any) {
+      if (error.response) {
+        onSubmitFailure(
+          error.response.data.error || "Failed to sign in. Please try again."
+        );
+        console.error("Error during sign-in:", error.response.data);
+      } else {
+        onSubmitFailure("Failed to sign in. Please try again.");
+        console.error("Error during sign-in:", error);
+      }
     }
   };
 
   const onClickCarousel = () => {
     navigate("/");
+  };
+
+  const handleCreateAccount = () => {
+    navigate("/signUp");
   };
 
   return (
@@ -100,18 +119,14 @@ const SignIn = () => {
         </SignInDescription>
       </SignInTextContainer>
       <FormContainer data-testid="form-container">
-        <InputLabel data-testid="email">EMAIL ADDRESS</InputLabel>
+        <InputLabel data-testid="email">USER NAME</InputLabel>
         <InputElement
           data-testid="email-input"
-          value={email}
+          value={userName}
           onChange={onChangeEmail}
           type="text"
         />
         <HorizontalLine />
-        {emailError && (
-          <ErrorMessage data-testid="email-error">{emailError}</ErrorMessage>
-        )}
-
         <InputLabel data-testid="password">PASSWORD</InputLabel>
         <InputElement
           type="text"
@@ -121,16 +136,9 @@ const SignIn = () => {
         />
         <input type="hidden" value={password} />
         <HorizontalLine />
-        {passwordError && (
-          <ErrorMessage data-testid="password-error">
-            {passwordError}
-          </ErrorMessage>
-        )}
-
         <ForgotPassword data-testid="forgot-password">
           Forgot Password?
         </ForgotPassword>
-
         <GlobalButton
           data-testid="signIn-button"
           type="button"
@@ -138,13 +146,14 @@ const SignIn = () => {
         >
           SIGN IN
         </GlobalButton>
+        {apiError && <ErrorMessage>{apiError}</ErrorMessage>}
       </FormContainer>
-      {/* <SignInCreateAccountContainer>
-                <DontHaveAccountText>Don't have an account?</DontHaveAccountText>
-                <CreateNewAccountButton onClick={handleCreateAccount}>
-                    Create new account
-                </CreateNewAccountButton>
-            </SignInCreateAccountContainer> */}
+      <SignInCreateAccountContainer>
+        <DontHaveAccountText>Don't have an account?</DontHaveAccountText>
+        <CreateNewAccountButton onClick={handleCreateAccount}>
+          Create new account
+        </CreateNewAccountButton>
+      </SignInCreateAccountContainer>
     </SignInMainContainer>
   );
 };

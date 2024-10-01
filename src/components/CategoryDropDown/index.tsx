@@ -9,11 +9,11 @@ import {
 import TodaysMenuItem from "../TodaysMenuItem";
 
 interface MenuItem {
-  id: number;
+  item_id: string;
   name: string;
   price: number;
   description: string;
-  image: string;
+  item_image_url: string;
 }
 
 interface CategoryDropDownProps {
@@ -58,7 +58,7 @@ const CategoryDropDown = ({
         {showMenuItemsList &&
           items.map((item, index) => (
             <TodaysMenuItem
-              key={index}
+              key={item.item_id}
               item={item}
               onAddItem={onAddItem}
               onRemoveItem={onRemoveItem}
