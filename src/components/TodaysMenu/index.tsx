@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CategoryDropDown from "../CategoryDropDown";
 import CheckoutPopup from "../CheckoutPopup";
 import TabBar from "../TabBar";
+import { useDispatch, useSelector } from "react-redux";
 import {
   TodaysMenuHeading,
   TodaysMenuMainContainer,
@@ -11,73 +12,29 @@ import {
   CheckOutPopupHomeContainer,
 } from "./styledComponents";
 import Modal from "../Modal";
-import axios from "axios";
-import { fetchApi } from "../../utils/fetchApi";
-
-interface MenuItem {
-  item_id: string;
-  name: string;
-  price: number;
-  description: string;
-  item_image_url: string;
-}
-
-interface Category {
-  category_id: string;
-  name: string;
-  items: MenuItem[];
-}
-
-interface CartItem extends MenuItem {
-  quantity: number;
-}
+import { AppDispatch, RootState } from "../../StoreFolder/store";
+import {
+  fetchCategories,
+  addToCart,
+  removeFromCart,
+} from "../../ReduxSlices/TodaysMenuSlice";
+import { MenuItem } from "../../Models/TodaysMenuModel";
 
 const TodaysMenu = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
   const [showModal, setShowModal] = useState(false);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const { categories, cart } = useSelector((state: RootState) => state.menu);
 
   useEffect(() => {
-    axios
-      .get(`${fetchApi}qb_order/get/categories/`) // Change to 127.0.0.1
-      .then((response) => {
-        setCategories(response.data.categories);
-      })
-      .catch((error) => {
-        console.error("Error fetching categories:", error);
-      });
-  }, []);
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
-  const addToCart = (item: MenuItem) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find(
-        (cartItem) => cartItem.item_id === item.item_id
-      );
-      if (existingItem) {
-        return prevCart.map((cartItem) =>
-          cartItem.item_id === item.item_id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      }
-      return [...prevCart, { ...item, quantity: 1 }];
-    });
+  const handleAddItem = (item: MenuItem) => {
+    dispatch(addToCart(item));
   };
 
-  const removeFromCart = (item: MenuItem) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find(
-        (cartItem) => cartItem.item_id === item.item_id
-      );
-      if (existingItem && existingItem.quantity > 1) {
-        return prevCart.map((cartItem) =>
-          cartItem.item_id === item.item_id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        );
-      }
-      return prevCart.filter((cartItem) => cartItem.item_id !== item.item_id);
-    });
+  const handleRemoveItem = (item: MenuItem) => {
+    dispatch(removeFromCart(item));
   };
 
   const getItemQuantity = (item: MenuItem) => {
@@ -110,8 +67,8 @@ const TodaysMenu = () => {
                 key={category.category_id}
                 title={category.name}
                 items={category.items}
-                onAddItem={addToCart}
-                onRemoveItem={removeFromCart}
+                onAddItem={handleAddItem}
+                onRemoveItem={handleRemoveItem}
                 getItemQuantity={getItemQuantity}
               />
             ))

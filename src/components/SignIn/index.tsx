@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
-
-import { useNavigate } from "react-router-dom";
-
-import Cookies from "js-cookie";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { fetchApi } from "../../utils/fetchApi";
+import { getCookie, setCookie } from "../../utils/StorageUtilites";
 
 import {
   BackImage,
@@ -24,86 +24,67 @@ import {
 } from "./styledComponents";
 
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
-import axios from "axios";
-import { fetchApi } from "../../utils/fetchApi";
 
 const SignIn = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [maskedPassword, setMaskedPassword] = useState("");
-  const [userNameError, serUserNameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [apiError, setApiError] = useState("");
   const navigate = useNavigate();
 
+  const jwtToken = getCookie();
+  if (jwtToken) {
+    return <Navigate to="/TodaysMenu" />;
+  }
+
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
-    if (event.target.value) {
-      serUserNameError("");
-    }
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     const inputPassword = event.target.value;
     setPassword(inputPassword);
     setMaskedPassword("*".repeat(inputPassword.length));
-    if (inputPassword) {
-      setPasswordError("");
-    }
+  };
+
+  const onSubmitSuccess = (accessToken: string) => {
+    setCookie("access_token", accessToken, { expires: 30, secure: true });
+    console.log("Signed in successfully");
+    navigate("/TodaysMenu");
+  };
+
+  const onSubmitFailure = (errorMsg: string) => {
+    setApiError(errorMsg);
   };
 
   const onsubmitSignIn = async () => {
-    serUserNameError("");
-    setPasswordError("");
     setApiError("");
 
-    let hasError = false;
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
 
-    if (!userName) {
-      serUserNameError("User Name is required");
-      hasError = true;
-    }
+      const response = await axios.post(
+        `${fetchApi}qb_users/signin/user/`,
+        {
+          username: userName,
+          password: password,
+        },
+        { headers }
+      );
 
-    if (!password) {
-      setPasswordError("Password is required");
-      hasError = true;
-    }
-
-    if (!hasError) {
-      try {
-        const headers = {
-          "Content-Type": "application/json",
-        };
-
-        const response = await axios.post(
-          `${fetchApi}qb_users/signin/user/`,
-          {
-            username: userName,
-            password: password,
-          },
-          { headers }
+      const { access_token } = response.data;
+      onSubmitSuccess(access_token);
+    } catch (error: any) {
+      if (error.response) {
+        onSubmitFailure(
+          error.response.data.error || "Failed to sign in. Please try again."
         );
-
-        const { access_token } = response.data;
-
-        Cookies.set("access_token", access_token, {
-          expires: 30,
-          secure: true,
-        });
-
-        console.log("Signed in successfully:", response.data);
-
-        navigate("/TodaysMenu");
-      } catch (error: any) {
-        if (error.response) {
-          setApiError(
-            error.response.data.error || "Failed to sign in. Please try again."
-          );
-          console.error("Error during sign-in:", error.response.data);
-        } else {
-          setApiError("Failed to sign in. Please try again.");
-          console.error("Error during sign-in:", error);
-        }
+        console.error("Error during sign-in:", error.response.data);
+      } else {
+        onSubmitFailure("Failed to sign in. Please try again.");
+        console.error("Error during sign-in:", error);
       }
     }
   };
@@ -146,9 +127,6 @@ const SignIn = () => {
           type="text"
         />
         <HorizontalLine />
-        {userNameError && (
-          <ErrorMessage data-testid="email-error">{userNameError}</ErrorMessage>
-        )}
         <InputLabel data-testid="password">PASSWORD</InputLabel>
         <InputElement
           type="text"
@@ -158,11 +136,6 @@ const SignIn = () => {
         />
         <input type="hidden" value={password} />
         <HorizontalLine />
-        {passwordError && (
-          <ErrorMessage data-testid="password-error">
-            {passwordError}
-          </ErrorMessage>
-        )}
         <ForgotPassword data-testid="forgot-password">
           Forgot Password?
         </ForgotPassword>
@@ -173,7 +146,7 @@ const SignIn = () => {
         >
           SIGN IN
         </GlobalButton>
-        {apiError && <ErrorMessage>{apiError}</ErrorMessage>}{" "}
+        {apiError && <ErrorMessage>{apiError}</ErrorMessage>}
       </FormContainer>
       <SignInCreateAccountContainer>
         <DontHaveAccountText>Don't have an account?</DontHaveAccountText>
