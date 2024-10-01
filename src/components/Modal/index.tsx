@@ -23,7 +23,7 @@ interface ModalProps {
   showModal: boolean;
   onClose: () => void;
   cartItems: {
-    id: number;
+    id: string;
     name: string;
     quantity: number;
     price: number;

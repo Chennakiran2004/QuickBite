@@ -1,5 +1,5 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import "./App.css";
 import HomeCarousel from "./components/HomeCarousel";
 import SignIn from "./components/SignIn";
@@ -8,6 +8,8 @@ import { TabProvider } from "./Context/TabContext";
 import PreviousOrders from "./components/PreviousOrders";
 import SearchPage from "./components/SearchPage";
 import Profile from "./components/Profile";
+import SignUp from "./components/SignUp";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -17,10 +19,14 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeCarousel />} />
             <Route path="/signIn" element={<SignIn />} />
-            <Route path="/TodaysMenu" element={<TodaysMenu />} />
-            <Route path="/orders" element={<PreviousOrders />} />
-            <Route path="/searchPage" element={<SearchPage />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/signUp" element={<SignUp />} />
+
+            <Route element={<ProtectedRoute />}>
+              <Route path="/TodaysMenu" element={<TodaysMenu />} />
+              <Route path="/orders" element={<PreviousOrders />} />
+              <Route path="/searchPage" element={<SearchPage />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
           </Routes>
         </Router>
       </TabProvider>

@@ -94,12 +94,11 @@ export const ModalItemQuantity = styled.p`
   flex-shrink: 0;
   border-radius: 4px;
   border: 0.5px solid #868686;
-  opacity: 0.3;
+  opacity: 0.9;
   background: #fff;
   color: #f8b64c;
   font-size: 16px;
   line-height: 24px; /* 150% */
-  letter-spacing: -0.28px;
 `;
 
 export const ModalItemName = styled.p`

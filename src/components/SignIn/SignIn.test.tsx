@@ -59,6 +59,36 @@ describe("SignIn component", () => {
     expect(passwordError).toBeInTheDocument();
   });
 
+  it("displays an error message for an invalid email", () => {
+    renderComponent();
+
+    const emailInput = screen.getByTestId("email-input");
+    const signInButton = screen.getByTestId("signIn-button");
+
+    fireEvent.change(emailInput, { target: { value: "invalid_email" } });
+    fireEvent.click(signInButton);
+
+    const emailError = screen.getByTestId("email-error");
+    expect(emailError).toBeInTheDocument();
+    expect(emailError.textContent).toBe("Invalid email");
+  });
+
+  it("displays an error message for an invalid password", () => {
+    renderComponent();
+
+    const emailInput = screen.getByTestId("email-input");
+    const passwordInput = screen.getByTestId("password-input");
+    const signInButton = screen.getByTestId("signIn-button");
+
+    fireEvent.change(emailInput, { target: { value: "Q" } });
+    fireEvent.change(passwordInput, { target: { value: "invalid_password" } });
+    fireEvent.click(signInButton);
+
+    const passwordError = screen.getByTestId("password-error");
+    expect(passwordError).toBeInTheDocument();
+    expect(passwordError.textContent).toBe("Invalid password");
+  });
+
   it("successful sign in with valid credentials", () => {
     renderComponent();
 
@@ -78,5 +108,16 @@ describe("SignIn component", () => {
     const backImage = screen.getByTestId("backImage");
     fireEvent.click(backImage);
     expect(mockNavigate).toHaveBeenCalledWith("/");
+  });
+
+  it("keeps the hidden password input in sync with visible input", () => {
+    renderComponent();
+
+    const passwordInput = screen.getByTestId("password-input");
+
+    fireEvent.change(passwordInput, { target: { value: "test_password" } });
+
+    const hiddenInput = screen.getByDisplayValue("test_password");
+    expect(hiddenInput).toBeInTheDocument();
   });
 });

@@ -3,14 +3,14 @@ import Modal from ".";
 
 const mockCartItems = [
   {
-    id: 1,
+    id: "1",
     name: "Pizza",
     quantity: 2,
     price: 200,
     description: "Cheese Burst",
   },
   {
-    id: 2,
+    id: "2",
     name: "Burger",
     quantity: 1,
     price: 100,

@@ -6,8 +6,20 @@ import "./index.css";
 import WelcomePage from "../WelcomePage";
 import AllYourFavorites from "../AllYourFavorites";
 import ChooseYourFood from "../ChooseYourFood";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getCookie } from "../../utils/StorageUtilites";
 
 function HomeCarousel() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = getCookie();
+    if (token) {
+      navigate("/TodaysMenu");
+    }
+  }, [navigate]);
+
   var settings = {
     dots: true,
     infinite: false,

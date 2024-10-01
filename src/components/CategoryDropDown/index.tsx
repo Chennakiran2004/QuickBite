@@ -9,11 +9,11 @@ import {
 import TodaysMenuItem from "../TodaysMenuItem";
 
 interface MenuItem {
-  id: number;
+  item_id: string;
   name: string;
   price: number;
   description: string;
-  image: string;
+  item_image_url: string;
 }
 
 interface CategoryDropDownProps {
@@ -38,19 +38,27 @@ const CategoryDropDown = ({
   };
 
   return (
-    <CategoryDrownDownMainContainer>
+    <CategoryDrownDownMainContainer data-testid="CategoryDrownDownMainContainer">
       <CategoryDropDownSubContainer onClick={toggleMenuItemsList}>
-        <CategoryDropDownHeading>{title}</CategoryDropDownHeading>
+        <CategoryDropDownHeading data-testid="category-title">
+          {title}
+        </CategoryDropDownHeading>
         <CategoryDropDownImage
+          data-testid="dropDown-arrow-image"
           isRotates={showMenuItemsList}
+          data-rotates={showMenuItemsList}
           src="/Images/back.svg"
         />
       </CategoryDropDownSubContainer>
-      <MenuItemsList isRotates={showMenuItemsList}>
+      <MenuItemsList
+        role="list"
+        data-rotates={showMenuItemsList}
+        isRotates={showMenuItemsList}
+      >
         {showMenuItemsList &&
           items.map((item, index) => (
             <TodaysMenuItem
-              key={index}
+              key={item.item_id}
               item={item}
               onAddItem={onAddItem}
               onRemoveItem={onRemoveItem}
