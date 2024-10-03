@@ -12,11 +12,18 @@ import {
 } from "./styledComponents";
 
 import { HorizontalLine } from "../SignIn/styledComponents";
+import { useNavigate } from "react-router-dom";
 
 const ProfileInformationAndPayment = () => {
+  const navigate = useNavigate();
+
+  const handleClickProfileInfo = () => {
+    navigate("/profileInfo");
+  };
+
   return (
     <>
-      <PersonalInfoContainer>
+      <PersonalInfoContainer onClick={handleClickProfileInfo}>
         <PersonalInfoItemContainer>
           <PersonalInfoItemSubContainer>
             <PersonalInfoItemImage
