@@ -11,5 +11,5 @@ export const setCookie = (
 export const getCookie = (): string | undefined => Cookies.get("access_token");
 
 export const removeCookie = () => {
-  Cookies.remove("jwt_token");
+  Cookies.remove("access_token");
 };

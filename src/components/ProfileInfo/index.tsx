@@ -16,7 +16,7 @@ const ProfileInfo = () => {
   const navigate = useNavigate();
 
   const [username, setUserName] = useState("Kiran_Kumar");
-  const [email, setEmail] = useState("kiran.kumar@gmail.com");
+  const [email, setEmail] = useState("kirankumar@gmail.com");
   const [password, setPassword] = useState("********");
 
   const handleClickBack = () => {
@@ -42,7 +42,11 @@ const ProfileInfo = () => {
   return (
     <>
       <SignAndLoginInHeadingContainer style={{ marginTop: "16px" }}>
-        <BackImage src="/Images/back.svg" onClick={handleClickBack} />
+        <BackImage
+          src="/Images/back.svg"
+          onClick={handleClickBack}
+          style={{ paddingLeft: "16px" }}
+        />
         <SignAndLoginHeading>Edit Profile</SignAndLoginHeading>
       </SignAndLoginInHeadingContainer>
       <HorizontalLine style={{ marginTop: "0", opacity: "0.4" }} />

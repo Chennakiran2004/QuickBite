@@ -2,6 +2,8 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+
 import {
   BackImage,
   HorizontalLine,
@@ -10,6 +12,7 @@ import {
   SignAndLoginHeading,
   SignAndLoginInHeadingContainer,
   ErrorMessage,
+  PasswordDescriptionContainer,
 } from "../SignIn/styledComponents";
 import {
   AlreadyHaveAccountTextSpan,
@@ -27,7 +30,7 @@ const SignUp = () => {
   const [fullName, setFullName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [maskedPassword, setMaskedPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(true);
 
   const [fullNameError, setFullNameError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -53,10 +56,6 @@ const SignUp = () => {
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     const inputPassword = event.target.value;
     setPassword(inputPassword);
-    setMaskedPassword("*".repeat(inputPassword.length));
-    if (inputPassword) {
-      setPasswordError("");
-    }
   };
 
   const handleAlreadyHaveAccount = () => {
@@ -131,6 +130,10 @@ const SignUp = () => {
     }
   };
 
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <SignUpMainContainer>
       <SignAndLoginInHeadingContainer>
@@ -171,18 +174,22 @@ const SignUp = () => {
         </>
         <>
           <InputLabel>PASSWORD</InputLabel>
-          <InputElement
-            type="text"
-            value={maskedPassword}
-            onChange={onChangePassword}
-          />
-          <input type="hidden" value={password} />
+          <PasswordDescriptionContainer>
+            <InputElement
+              type={showPassword ? "password" : "text"}
+              value={password}
+              onChange={onChangePassword}
+            />
+            <div onClick={togglePassword}>
+              {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+            </div>
+          </PasswordDescriptionContainer>
+          {/* <input type="hidden" value={password} /> */}
           <HorizontalLine />
           {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
         </>
         <GlobalButton type="submit">SIGN UP</GlobalButton>
         {apiError && <ErrorMessage>{apiError}</ErrorMessage>}{" "}
-        {/* Display API error */}
       </CreateAccountFormContainer>
       <TermsAndConditionsText>
         By Signing up you agree to our Terms Conditions & Privacy Policy.
