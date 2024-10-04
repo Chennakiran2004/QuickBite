@@ -1,9 +1,37 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import {
   gothicA1Bold,
   gothicA1Light,
   gothicA1SemiBold,
 } from "../../Constants/fontStyles";
+
+export const AppContainer = styled.div`
+  text-align: center;
+  margin-top: 50px;
+`;
+
+export const SlideButton = styled.button`
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+export const SlideUpPage = styled(motion.div)`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+  padding-top: 8%;
+  margin: auto;
+  height: 60vh;
+`;
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -30,15 +58,15 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  padding: 20px;
-  height: 50vh;
+  width: 90%;
+  margin-top: 16px;
 `;
 
 export const ModalHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   position: relative;
 `;
 

@@ -20,6 +20,8 @@ const mockCartItems = [
 
 const mockOnClose = jest.fn();
 const mockTotalPrice = 500;
+const mockOnAddItem = jest.fn();
+const mockOnRemoveItem = jest.fn();
 
 const renderComponent = (
   showModal: boolean,
@@ -30,8 +32,11 @@ const renderComponent = (
     <Modal
       showModal={showModal}
       onClose={mockOnClose}
+      onAddItem={mockOnAddItem}
+      onRemoveItem={mockOnRemoveItem}
       cartItems={cartItems}
       totalPrice={totalPrice}
+      isExiting={false}
     />
   );
 };
