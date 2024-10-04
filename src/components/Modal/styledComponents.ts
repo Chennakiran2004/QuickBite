@@ -111,7 +111,7 @@ export const ModalListItem = styled.li`
 
 export const ModalListItemContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 24px;
 `;
 
@@ -132,9 +132,7 @@ export const ModalItemQuantity = styled.p`
 export const ModalItemName = styled.p`
   ${gothicA1Light}
   color: #010f07;
-  font-size: 18px;
-  line-height: 24px; /* 133.333% */
-  letter-spacing: -0.315px;
+  font-size: 16px;
   margin: 0;
 `;
 
@@ -145,6 +143,7 @@ export const ModalItemPrice = styled.p`
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.6px;
+  margin: 8px;
 `;
 
 export const ModalHorizontalLine = styled.hr`
@@ -183,3 +182,14 @@ export const PlaceOrderButton = styled.button`
   margin-top: 8%;
   margin-bottom: 8%;
 `;
+
+export const PriceAndCountContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SpanElement = styled.span`
+  font-size: 16px;
+`;
+
+export const FoodType = styled.img``;

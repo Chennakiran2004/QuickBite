@@ -6,12 +6,15 @@ import {
   ModalHeading,
   ModalListItem,
   ModalListItemContainer,
-  ModalItemQuantity,
   ModalItemName,
   ModalHorizontalLine,
   ModalItemDescriptionContainer,
   AppContainer,
   SlideUpPage,
+  ModalItemPrice,
+  PriceAndCountContainer,
+  SpanElement,
+  FoodType,
 } from "./styledComponents";
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
 import {
@@ -55,7 +58,7 @@ const Modal: React.FC<ModalProps> = ({
     hidden: { y: "100vh", opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1,
+      opacity: 2,
       transition: { duration: 0.45, ease: "easeInOut" },
     },
     exit: {
@@ -98,57 +101,65 @@ const Modal: React.FC<ModalProps> = ({
               <ModalContent key={item.id}>
                 <ModalListItem>
                   <ModalListItemContainer>
-                    <ModalItemQuantity>{item.quantity}</ModalItemQuantity>
+                    <FoodType src="/Images/nonveg.svg" />
                     <ModalItemDescriptionContainer>
-                      <ModalItemName>{item.name}</ModalItemName>
-                      <ModalItemName>{item.description}</ModalItemName>
+                      <ModalItemName style={{ fontWeight: "500" }}>
+                        {item.name}
+                      </ModalItemName>
+                      <ModalItemName style={{ fontSize: "14px" }}>
+                        ₹{item.price}
+                      </ModalItemName>
                     </ModalItemDescriptionContainer>
                   </ModalListItemContainer>
-                  {/* <ModalItemPrice>
-                    ₹ {item.price * item.quantity}
-                  </ModalItemPrice> */}
 
-                  <CountContainer>
-                    <TodaysMenuFoodCountButton
-                      onClick={() => handleMinusClick(item)}
+                  <PriceAndCountContainer>
+                    <CountContainer
+                      style={{ padding: "0px", borderRadius: "8px" }}
                     >
-                      <MinusIcon
-                        data-testid="minus-button"
-                        width="8"
-                        height="8"
-                        viewBox="0 0 8 8"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <TodaysMenuFoodCountButton
+                        onClick={() => handleMinusClick(item)}
                       >
-                        <path
-                          d="M1.66675 4.00008H6.33341"
-                          stroke="#CA8A04"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </MinusIcon>
-                    </TodaysMenuFoodCountButton>
-                    <span>{item.quantity}</span>
-                    <TodaysMenuFoodCountButton
-                      onClick={() => handleAddClick({ item_id: item.id })}
-                    >
-                      <PlusIcon
-                        data-testid="plus-button"
-                        width="8"
-                        height="8"
-                        viewBox="0 0 8 8"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        <MinusIcon
+                          data-testid="minus-button"
+                          width="8"
+                          height="8"
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1.66675 4.00008H6.33341"
+                            stroke="#CA8A04"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </MinusIcon>
+                      </TodaysMenuFoodCountButton>
+                      <SpanElement>{item.quantity}</SpanElement>
+                      <TodaysMenuFoodCountButton
+                        onClick={() => handleAddClick({ item_id: item.id })}
                       >
-                        <path
-                          d="M4.00008 1.66675V6.33341M1.66675 4.00008H6.33341"
-                          stroke="#CA8A04"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </PlusIcon>
-                    </TodaysMenuFoodCountButton>
-                  </CountContainer>
+                        <PlusIcon
+                          data-testid="plus-button"
+                          width="8"
+                          height="8"
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4.00008 1.66675V6.33341M1.66675 4.00008H6.33341"
+                            stroke="#CA8A04"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </PlusIcon>
+                      </TodaysMenuFoodCountButton>
+                    </CountContainer>
+                    <ModalItemPrice>
+                      ₹ {item.price * item.quantity}
+                    </ModalItemPrice>
+                  </PriceAndCountContainer>
                 </ModalListItem>
                 <ModalHorizontalLine />
               </ModalContent>
