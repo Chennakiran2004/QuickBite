@@ -44,24 +44,7 @@ const ProfileInformationAndPayment = () => {
         <HorizontalLine style={{ marginTop: "16px", opacity: "0.3" }} />
       </PersonalInfoContainer>
 
-      <PersonalInfoContainer>
-        <PersonalInfoItemContainer>
-          <PersonalInfoItemSubContainer>
-            <PersonalInfoItemImage src="/Images/card.svg" />
-            <PersonalInfoTextContainer>
-              <PersonalInfoItemHeading>Payment Methods</PersonalInfoItemHeading>
-              <PersonalInfoItemDescription>
-                Add your credit & debit cards
-              </PersonalInfoItemDescription>
-            </PersonalInfoTextContainer>
-          </PersonalInfoItemSubContainer>
-          <PersonalInfoItemViewMoreButton src="/Images/back.svg" />
-        </PersonalInfoItemContainer>
-        <HorizontalLine style={{ marginTop: "16px", opacity: "0.3" }} />
-      </PersonalInfoContainer>
-
       <MoreContainer>
-        <MoreContainerHeading>More</MoreContainerHeading>
         <PersonalInfoItemContainer>
           <PersonalInfoItemSubContainer>
             <PersonalInfoItemImage src="/Images/rating.svg" />

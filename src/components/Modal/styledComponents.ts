@@ -31,6 +31,7 @@ export const SlideUpPage = styled(motion.div)`
   padding-top: 8%;
   margin: auto;
   height: 60vh;
+  overflow: scroll;
 `;
 
 export const ModalOverlay = styled.div`
@@ -86,6 +87,8 @@ export const ModalCloseButton = styled.button`
   background: none;
   border: none;
   font-size: 16px;
+  width: 24px;
+  height: 24px;
 `;
 
 export const ModalBody = styled.div`
