@@ -1,43 +1,34 @@
 import styled from "styled-components";
-import { gothicA1Light, gothicA1SemiBold } from "../../Constants/fontStyles";
+import { gothicA1SemiBold } from "../../Constants/fontStyles";
 
 export const AddItemFormMainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 90%;
-  display: flex;
   margin: auto;
-`;
-
-export const AddItemFormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-export const FormItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
   margin-top: 24px;
-  width: 100%;
+  margin-bottom: 24px;
+  gap: 24px;
 `;
 
-export const FormItemSubContainer = styled.div`
-  gap: 8px;
+export const AddItemFormElement = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
+  gap: 8px;
 `;
 
-export const FormItemLabel = styled.label`
+export const InputLabel = styled.label`
   ${gothicA1SemiBold}
   color: #010f07;
   font-size: 16px;
-  line-height: 16px;
+  font-style: normal;
+  line-height: 16px; /* 133.333% */
   letter-spacing: -0.28px;
 `;
 
-export const FormItemInput = styled.input`
+export const InputElement = styled.input`
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
@@ -45,36 +36,19 @@ export const FormItemInput = styled.input`
   width: 100%;
   height: 40px;
   outline: none;
+  padding: 0;
 `;
 
-export const FormItemImageInput = styled.input`
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
-  height: 111px;
-  border: none;
-  outline: none;
-  width: 100%;
-`;
-
-export const FormItemSelect = styled.select`
+export const SelectElement = styled.select`
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
   border: none;
   width: 100%;
-  height: 48px;
+  height: 40px;
   outline: none;
-  padding-left: 16px;
-`;
-
-export const FormOptionElement = styled.option`
-  ${gothicA1Light}
-  color: var(--Light-blue-gray-400, #94A3B8);
-  font-feature-settings:
-    "liga" off,
-    "clig" off;
-  font-size: 12px;
-  line-height: 16px; /* 133.333% */
-  letter-spacing: -0.28px;
+  padding-left: 12px;
+  appearance: none;
+  cursor: pointer;
+  border-width: 0;
 `;

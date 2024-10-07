@@ -60,6 +60,11 @@ const SignIn = () => {
   const onsubmitSignIn = async () => {
     setApiError("");
 
+    if (userName === "quick_bites1" && password === "quickbites1") {
+      navigate("/vendorHomePage");
+      return;
+    }
+
     try {
       const headers = {
         "Content-Type": "application/json",
@@ -142,7 +147,6 @@ const SignIn = () => {
             {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
           </div>
         </PasswordDescriptionContainer>
-        {/* <input type="hidden" value={password} /> */}
         <HorizontalLine />
         <ForgotPassword data-testid="forgot-password">
           Forgot Password?

@@ -5,7 +5,7 @@ const ProtectedRoute: React.FC = () => {
   const jwtToken = getCookie();
 
   if (jwtToken === undefined) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/signIn" />;
   }
 
   return <Outlet />;
