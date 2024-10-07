@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { fetchApi } from "../../utils/fetchApi";
 import { getCookie, setCookie } from "../../utils/StorageUtilites";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import {
   BackImage,
@@ -21,6 +22,7 @@ import {
   SignInCreateAccountContainer,
   DontHaveAccountText,
   CreateNewAccountButton,
+  PasswordDescriptionContainer,
 } from "./styledComponents";
 
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
@@ -28,8 +30,8 @@ import { GlobalButton } from "../AllYourFavorites/styledComponents";
 const SignIn = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [maskedPassword, setMaskedPassword] = useState("");
   const [apiError, setApiError] = useState("");
+  const [showPassword, setShowPassword] = useState(true);
   const navigate = useNavigate();
 
   const jwtToken = getCookie();
@@ -44,12 +46,10 @@ const SignIn = () => {
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     const inputPassword = event.target.value;
     setPassword(inputPassword);
-    setMaskedPassword("*".repeat(inputPassword.length));
   };
 
   const onSubmitSuccess = (accessToken: string) => {
     setCookie("access_token", accessToken, { expires: 30, secure: true });
-    console.log("Signed in successfully");
     navigate("/TodaysMenu");
   };
 
@@ -97,6 +97,9 @@ const SignIn = () => {
     navigate("/signUp");
   };
 
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <SignInMainContainer data-testid="signInContainer">
       <SignAndLoginInHeadingContainer data-testid="heading-container">
@@ -128,13 +131,18 @@ const SignIn = () => {
         />
         <HorizontalLine />
         <InputLabel data-testid="password">PASSWORD</InputLabel>
-        <InputElement
-          type="text"
-          data-testid="password-input"
-          onChange={onChangePassword}
-          value={maskedPassword}
-        />
-        <input type="hidden" value={password} />
+        <PasswordDescriptionContainer>
+          <InputElement
+            type={showPassword ? "password" : "text"}
+            data-testid="password-input"
+            onChange={onChangePassword}
+            value={password}
+          />
+          <div onClick={togglePassword}>
+            {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+          </div>
+        </PasswordDescriptionContainer>
+        {/* <input type="hidden" value={password} /> */}
         <HorizontalLine />
         <ForgotPassword data-testid="forgot-password">
           Forgot Password?

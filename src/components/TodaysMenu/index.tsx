@@ -21,7 +21,8 @@ import {
 import { MenuItem } from "../../Models/TodaysMenuModel";
 
 const TodaysMenu = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showPage, setShowPage] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { categories, cart } = useSelector((state: RootState) => state.menu);
 
@@ -42,12 +43,17 @@ const TodaysMenu = () => {
     return cartItem ? cartItem.quantity : 0;
   };
 
-  const handleCheckoutClick = () => {
-    setShowModal(true);
+  const handleButtonClick = () => {
+    setShowPage(true);
+    console.log("hello");
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleCloseButtonClick = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setShowPage(false);
+      setIsExiting(false);
+    }, 500);
   };
 
   const getTotalItems = () =>
@@ -78,7 +84,7 @@ const TodaysMenu = () => {
         </CategoryDropDownListContainer>
       </TodaysMenuSubContainer>
       <TabBarContainer>
-        <CheckOutPopupHomeContainer onClick={handleCheckoutClick}>
+        <CheckOutPopupHomeContainer onClick={handleButtonClick}>
           <CheckoutPopup
             totalItems={getTotalItems()}
             totalPrice={getTotalPrice()}
@@ -95,8 +101,19 @@ const TodaysMenu = () => {
           description: item.description,
         }))}
         totalPrice={getTotalPrice()}
-        showModal={showModal}
-        onClose={handleCloseModal}
+        showModal={showPage}
+        isExiting={isExiting}
+        onClose={handleCloseButtonClick}
+        onAddItem={(item) => handleAddItem({ ...item, item_image_url: "" })}
+        onRemoveItem={(item) =>
+          handleRemoveItem({
+            item_id: item.id,
+            name: "",
+            price: 0,
+            description: "",
+            item_image_url: "",
+          })
+        }
       />
     </TodaysMenuMainContainer>
   );

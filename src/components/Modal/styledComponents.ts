@@ -1,9 +1,38 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import {
   gothicA1Bold,
   gothicA1Light,
   gothicA1SemiBold,
 } from "../../Constants/fontStyles";
+
+export const AppContainer = styled.div`
+  text-align: center;
+  margin-top: 50px;
+`;
+
+export const SlideButton = styled.button`
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+export const SlideUpPage = styled(motion.div)`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+  padding-top: 8%;
+  margin: auto;
+  height: 60vh;
+  overflow: scroll;
+`;
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -30,15 +59,15 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  padding: 20px;
-  height: 50vh;
+  width: 90%;
+  margin-top: 16px;
 `;
 
 export const ModalHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   position: relative;
 `;
 
@@ -58,6 +87,8 @@ export const ModalCloseButton = styled.button`
   background: none;
   border: none;
   font-size: 16px;
+  width: 24px;
+  height: 24px;
 `;
 
 export const ModalBody = styled.div`
@@ -83,7 +114,7 @@ export const ModalListItem = styled.li`
 
 export const ModalListItemContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 24px;
 `;
 
@@ -104,9 +135,7 @@ export const ModalItemQuantity = styled.p`
 export const ModalItemName = styled.p`
   ${gothicA1Light}
   color: #010f07;
-  font-size: 18px;
-  line-height: 24px; /* 133.333% */
-  letter-spacing: -0.315px;
+  font-size: 16px;
   margin: 0;
 `;
 
@@ -117,6 +146,7 @@ export const ModalItemPrice = styled.p`
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.6px;
+  margin: 8px;
 `;
 
 export const ModalHorizontalLine = styled.hr`
@@ -155,3 +185,14 @@ export const PlaceOrderButton = styled.button`
   margin-top: 8%;
   margin-bottom: 8%;
 `;
+
+export const PriceAndCountContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SpanElement = styled.span`
+  font-size: 16px;
+`;
+
+export const FoodType = styled.img``;
