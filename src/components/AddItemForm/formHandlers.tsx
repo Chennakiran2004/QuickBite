@@ -4,7 +4,7 @@ export const useAddItemFormHandlers = () => {
   const [dishName, setDishName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [vegNonVeg, setVegNonVeg] = useState("veg"); // Default value set to 'veg'
+  const [vegNonVeg, setVegNonVeg] = useState("veg");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
 
@@ -20,7 +20,7 @@ export const useAddItemFormHandlers = () => {
     setPrice(event.target.value);
   };
 
-  const onChangeVegNonVeg = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChangeVegNonVeg = (event: React.ChangeEvent<HTMLInputElement>) => {
     setVegNonVeg(event.target.value);
   };
 

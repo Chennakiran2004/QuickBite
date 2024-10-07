@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { gothicA1SemiBold } from "../../Constants/fontStyles";
+import Select from "react-select"; // Import react-select to style it
 
 export const AddItemFormMainContainer = styled.div`
   display: flex;
@@ -36,10 +37,10 @@ export const InputElement = styled.input`
   width: 100%;
   height: 40px;
   outline: none;
-  padding: 0;
 `;
 
-export const SelectElement = styled.select`
+export const StyledSelect = styled(Select)`
+  width: 100%;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
@@ -47,8 +48,49 @@ export const SelectElement = styled.select`
   width: 100%;
   height: 40px;
   outline: none;
-  padding-left: 12px;
-  appearance: none;
-  cursor: pointer;
-  border-width: 0;
+
+  .react-select__control {
+    border-radius: 8px;
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
+    border: none;
+    outline: none;
+    padding: 0 12px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background: var(--Active-Color---1, #eea734);
+
+    &:hover {
+      border: none;
+      box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .react-select__menu {
+    border-radius: 8px;
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  .react-select__option {
+    background-color: white;
+    color: #010f07;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--Active-Color---1, #eea734);
+    }
+
+    &.react-select__option--is-focused {
+      background: var(--Active-Color---1, #eea734);
+    }
+  }
+
+  .react-select__single-value {
+    color: #010f07; /* Selected value color */
+  }
+
+  .react-select__indicator {
+    color: #010f07; /* Arrow color */
+  }
 `;
