@@ -4,11 +4,13 @@ import {
   LogoutMainContainer,
   LogoutText,
 } from "./styledComponents";
+import { removeCookie } from "../../utils/StorageUtilites";
 
 const Logout = () => {
   const navigate = useNavigate();
 
   const onClickLogout = () => {
+    removeCookie();
     navigate("/signIn");
   };
 

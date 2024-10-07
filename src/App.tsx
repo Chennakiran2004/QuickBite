@@ -10,6 +10,7 @@ import SearchPage from "./components/SearchPage";
 import Profile from "./components/Profile";
 import SignUp from "./components/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ProfileInfo from "./components/ProfileInfo";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/orders" element={<PreviousOrders />} />
               <Route path="/searchPage" element={<SearchPage />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profileInfo" element={<ProfileInfo />} />
             </Route>
           </Routes>
         </Router>

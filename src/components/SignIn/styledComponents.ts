@@ -160,3 +160,9 @@ export const ErrorMessage = styled.p`
   margin-top: 10px;
   text-align: center;
 `;
+
+export const PasswordDescriptionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
