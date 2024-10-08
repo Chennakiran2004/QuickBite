@@ -17,9 +17,16 @@ import {
 } from "./styledComponents";
 import { useAddItemFormHandlers } from "./formHandlers";
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
+import {
+  BackImage,
+  SignAndLoginHeading,
+  SignAndLoginInHeadingContainer,
+} from "../SignIn/styledComponents";
+import { useNavigate } from "react-router-dom";
 
 const AddItemForm = () => {
   const [fileName, setFileName] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const {
     dishName,
@@ -63,7 +70,7 @@ const AddItemForm = () => {
     const file = e.target.files?.[0];
     if (file) {
       setFileName(file.name);
-      onChangeImage(file); // Pass the file to the handler
+      onChangeImage(file);
     }
   };
 
@@ -71,9 +78,20 @@ const AddItemForm = () => {
     document.getElementById("fileUpload")?.click();
   };
 
+  const handleBack = () => {
+    navigate("/vendorHomePage");
+  };
+
   return (
     <TodaysMenuMainContainer>
-      <TodaysMenuHeading>Add Item</TodaysMenuHeading>
+      <SignAndLoginInHeadingContainer>
+        <BackImage
+          data-testid="backImage"
+          onClick={handleBack}
+          src="/Images/back.svg"
+        />
+        <SignAndLoginHeading>Add Item</SignAndLoginHeading>
+      </SignAndLoginInHeadingContainer>
       <AddItemFormMainContainer onSubmit={onSubmitSuccess}>
         <AddItemFormElement>
           <InputLabel>Dish Name</InputLabel>
