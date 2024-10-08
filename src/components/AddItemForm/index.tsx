@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  TodaysMenuHeading,
-  TodaysMenuMainContainer,
-} from "../TodaysMenu/styledComponents";
+import { TodaysMenuMainContainer } from "../TodaysMenu/styledComponents";
 import {
   AddItemFormElement,
   AddItemFormMainContainer,
@@ -84,7 +81,7 @@ const AddItemForm = () => {
 
   return (
     <TodaysMenuMainContainer>
-      <SignAndLoginInHeadingContainer>
+      <SignAndLoginInHeadingContainer style={{ width: "90%", margin: "auto" }}>
         <BackImage
           data-testid="backImage"
           onClick={handleBack}
