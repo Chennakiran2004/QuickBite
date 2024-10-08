@@ -1,85 +1,4 @@
-// import React from "react";
-// import {
-//   TodaysMenuHeading,
-//   TodaysMenuMainContainer,
-// } from "../TodaysMenu/styledComponents";
-// import {
-//   AddItemFormElement,
-//   AddItemFormMainContainer,
-//   InputElement,
-//   InputLabel,
-// } from "./styledComponents";
-// import { useAddItemFormHandlers } from "./formHandlers";
-// import { GlobalButton } from "../AllYourFavorites/styledComponents";
-
-// const AddItemForm = () => {
-//   const {
-//     dishName,
-//     description,
-//     price,
-//     category,
-//     image,
-//     onChangeDishName,
-//     onChangeDescription,
-//     onChangePrice,
-//     onChangeCategory,
-//     onChangeImage,
-//   } = useAddItemFormHandlers();
-
-//   const onSubmitSuccess = (event: React.FormEvent) => {
-//     event.preventDefault();
-//     console.log("success");
-//   };
-
-//   return (
-//     <TodaysMenuMainContainer>
-//       <TodaysMenuHeading>Add Item</TodaysMenuHeading>
-//       <AddItemFormMainContainer onSubmit={onSubmitSuccess}>
-//         <AddItemFormElement>
-//           <InputLabel>Dish Name</InputLabel>
-//           <InputElement
-//             type="text"
-//             value={dishName}
-//             onChange={onChangeDishName}
-//           />
-//         </AddItemFormElement>
-//         <AddItemFormElement>
-//           <InputLabel>Description</InputLabel>
-//           <InputElement
-//             type="text"
-//             value={description}
-//             onChange={onChangeDescription}
-//           />
-//         </AddItemFormElement>
-//         <AddItemFormElement>
-//           <InputLabel>Price</InputLabel>
-//           <InputElement type="text" value={price} onChange={onChangePrice} />
-//         </AddItemFormElement>
-//         <AddItemFormElement>
-//           <InputLabel>Veg / Non Veg</InputLabel>
-//           <InputElement type="text" />
-//         </AddItemFormElement>
-//         <AddItemFormElement>
-//           <InputLabel>Category</InputLabel>
-//           <InputElement
-//             type="text"
-//             value={category}
-//             onChange={onChangeCategory}
-//           />
-//         </AddItemFormElement>
-//         <AddItemFormElement>
-//           <InputLabel>Image</InputLabel>
-//           <InputElement type="text" value={image} onChange={onChangeImage} />
-//         </AddItemFormElement>
-//         <GlobalButton type="submit">Add item</GlobalButton>{" "}
-//       </AddItemFormMainContainer>
-//     </TodaysMenuMainContainer>
-//   );
-// };
-
-// export default AddItemForm;
-
-import React from "react";
+import React, { useState } from "react";
 import {
   TodaysMenuHeading,
   TodaysMenuMainContainer,
@@ -89,32 +8,45 @@ import {
   AddItemFormMainContainer,
   InputElement,
   InputLabel,
-  StyledSelect, // Use the styled select
+  StyledSelect,
+  FileInputContainer,
+  FileText,
+  ImageInputElementContainer,
+  HiddenFileInput,
+  UploadIcon,
 } from "./styledComponents";
 import { useAddItemFormHandlers } from "./formHandlers";
 import { GlobalButton } from "../AllYourFavorites/styledComponents";
 
 const AddItemForm = () => {
+  const [fileName, setFileName] = useState<string | null>(null);
+
   const {
     dishName,
     description,
     price,
     category,
-    image,
+    vegNonVeg,
     onChangeDishName,
     onChangeDescription,
     onChangePrice,
     onChangeCategory,
-    onChangeImage,
     onChangeVegNonVeg,
+    onChangeImage,
   } = useAddItemFormHandlers();
 
   const onSubmitSuccess = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("success");
+    console.log("Form Submitted:", {
+      dishName,
+      description,
+      price,
+      vegNonVeg,
+      category,
+      image: fileName,
+    });
   };
 
-  // Options for Veg / Non Veg and Category
   const vegNonVegOptions = [
     { value: "Veg", label: "Veg" },
     { value: "Non Veg", label: "Non Veg" },
@@ -125,7 +57,19 @@ const AddItemForm = () => {
     { value: "Main Course", label: "Main Course" },
     { value: "Dessert", label: "Dessert" },
     { value: "Beverage", label: "Beverage" },
-  ]; // Add more categories as needed
+  ];
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFileName(file.name);
+      onChangeImage(file); // Pass the file to the handler
+    }
+  };
+
+  const handleClick = () => {
+    document.getElementById("fileUpload")?.click();
+  };
 
   return (
     <TodaysMenuMainContainer>
@@ -149,13 +93,16 @@ const AddItemForm = () => {
         </AddItemFormElement>
         <AddItemFormElement>
           <InputLabel>Price</InputLabel>
-          <InputElement type="text" value={price} onChange={onChangePrice} />
+          <InputElement type="number" value={price} onChange={onChangePrice} />
         </AddItemFormElement>
         <AddItemFormElement>
           <InputLabel>Veg / Non Veg</InputLabel>
           <StyledSelect
             options={vegNonVegOptions}
-            // onChange={onChangeVegNonVeg}
+            value={vegNonVegOptions.find(
+              (option) => option.value === vegNonVeg
+            )}
+            onChange={onChangeVegNonVeg}
             styles={{
               control: (provided) => ({
                 ...provided,
@@ -172,7 +119,7 @@ const AddItemForm = () => {
           <StyledSelect
             options={categoryOptions}
             value={categoryOptions.find((option) => option.value === category)}
-            // onChange={onChangeCategory}
+            onChange={onChangeCategory}
             styles={{
               control: (provided) => ({
                 ...provided,
@@ -186,7 +133,19 @@ const AddItemForm = () => {
         </AddItemFormElement>
         <AddItemFormElement>
           <InputLabel>Image</InputLabel>
-          <InputElement type="text" value={image} onChange={onChangeImage} />
+          <ImageInputElementContainer>
+            <FileInputContainer onClick={handleClick}>
+              <FileText>{fileName || "Upload File"}</FileText>
+              <UploadIcon>
+                <img src="/Images/upload-01.svg" alt="upload" />
+              </UploadIcon>
+              <HiddenFileInput
+                type="file"
+                id="fileUpload"
+                onChange={handleFileChange}
+              />
+            </FileInputContainer>
+          </ImageInputElementContainer>
         </AddItemFormElement>
         <GlobalButton type="submit">Add item</GlobalButton>
       </AddItemFormMainContainer>

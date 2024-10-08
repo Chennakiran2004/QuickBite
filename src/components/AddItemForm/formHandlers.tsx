@@ -4,9 +4,9 @@ export const useAddItemFormHandlers = () => {
   const [dishName, setDishName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [vegNonVeg, setVegNonVeg] = useState("veg");
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [vegNonVeg, setVegNonVeg] = useState("Veg");
+  const [category, setCategory] = useState("Main Course");
+  const [image, setImage] = useState<File | null>(null);
 
   const onChangeDishName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDishName(event.target.value);
@@ -20,16 +20,16 @@ export const useAddItemFormHandlers = () => {
     setPrice(event.target.value);
   };
 
-  const onChangeVegNonVeg = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setVegNonVeg(event.target.value);
+  const onChangeVegNonVeg = (option: any) => {
+    setVegNonVeg(option.value);
   };
 
-  const onChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(event.target.value);
+  const onChangeCategory = (option: any) => {
+    setCategory(option.value);
   };
 
-  const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setImage(event.target.value);
+  const onChangeImage = (file: File) => {
+    setImage(file);
   };
 
   return {
