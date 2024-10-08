@@ -80,7 +80,7 @@ const AddItemForm = () => {
   };
 
   return (
-    <TodaysMenuMainContainer>
+    <TodaysMenuMainContainer style={{ overflow: "scroll" }}>
       <SignAndLoginInHeadingContainer style={{ width: "90%", margin: "auto" }}>
         <BackImage
           data-testid="backImage"

@@ -59,6 +59,7 @@ export const SignInHeading = styled.h1`
   font-size: 26px;
   line-height: 42px; /* 161.538% */
   letter-spacing: 0.22px;
+  margin-bottom: 0;
 `;
 
 export const SignInDescription = styled.p`

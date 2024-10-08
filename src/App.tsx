@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomeCarousel from "./components/HomeCarousel";
@@ -13,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ProfileInfo from "./components/ProfileInfo";
 import VendorHomePage from "./components/VendorPage";
 import AddItemForm from "./components/AddItemForm";
+import Feedback from "./components/Feedback";
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
               <Route path="/searchPage" element={<SearchPage />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profileInfo" element={<ProfileInfo />} />
+              <Route path="/Feedback" element={<Feedback />} />
             </Route>
           </Routes>
         </Router>

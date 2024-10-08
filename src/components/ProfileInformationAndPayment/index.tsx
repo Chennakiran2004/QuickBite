@@ -8,7 +8,6 @@ import {
   PersonalInfoTextContainer,
   PersonalInfoItemSubContainer,
   MoreContainer,
-  MoreContainerHeading,
 } from "./styledComponents";
 
 import { HorizontalLine } from "../SignIn/styledComponents";
@@ -19,6 +18,10 @@ const ProfileInformationAndPayment = () => {
 
   const handleClickProfileInfo = () => {
     navigate("/profileInfo");
+  };
+
+  const handleFeedback = () => {
+    navigate("/Feedback");
   };
 
   return (
@@ -45,7 +48,7 @@ const ProfileInformationAndPayment = () => {
       </PersonalInfoContainer>
 
       <MoreContainer>
-        <PersonalInfoItemContainer>
+        <PersonalInfoItemContainer onClick={handleFeedback}>
           <PersonalInfoItemSubContainer>
             <PersonalInfoItemImage src="/Images/rating.svg" />
             <PersonalInfoTextContainer>

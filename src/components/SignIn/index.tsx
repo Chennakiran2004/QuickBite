@@ -60,7 +60,7 @@ const SignIn = () => {
   const onsubmitSignIn = async () => {
     setApiError("");
 
-    if (userName === "quick_bites1" && password === "quickbites1") {
+    if (userName === "quickbites1" && password === "quickbites1") {
       navigate("/vendorHomePage");
       return;
     }
