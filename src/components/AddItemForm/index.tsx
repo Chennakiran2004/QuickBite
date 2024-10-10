@@ -76,7 +76,7 @@ const AddItemForm = () => {
   };
 
   const handleBack = () => {
-    navigate("/vendorHomePage");
+    navigate("/VendorTodaysMenu");
   };
 
   return (

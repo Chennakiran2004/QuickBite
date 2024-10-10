@@ -61,7 +61,7 @@ const SignIn = () => {
     setApiError("");
 
     if (userName === "quickbites1" && password === "quickbites1") {
-      navigate("/vendorHomePage");
+      navigate("/VendorTodaysMenu");
       return;
     }
 

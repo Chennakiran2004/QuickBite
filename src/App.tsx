@@ -10,7 +10,7 @@ import Profile from "./components/Profile";
 import SignUp from "./components/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProfileInfo from "./components/ProfileInfo";
-import VendorHomePage from "./components/VendorPage";
+import VendorTodaysMenu from "./components/VendorTodaysMenu";
 import AddItemForm from "./components/AddItemForm";
 import Feedback from "./components/Feedback";
 
@@ -23,7 +23,7 @@ function App() {
             <Route path="/" element={<HomeCarousel />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
-            <Route path="/vendorHomePage" element={<VendorHomePage />} />
+            <Route path="/vendorTodaysMenu" element={<VendorTodaysMenu />} />
             <Route path="/addItemForm" element={<AddItemForm />} />
 
             <Route element={<ProtectedRoute />}>
